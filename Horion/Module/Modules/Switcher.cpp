@@ -7,7 +7,7 @@ Switcher::Switcher() : IModule(0, Category::COMBAT, "Switches between hotbar slo
 	// registerBoolSetting("DoubleSwitch", &ss, ss);
 	// registerBoolSetting("AutoSwitch", &autos, autos);
 	registerIntSetting("Slots", &ternary, 1, 0, 8);
-	registerIntSetting("Delay", &delay, delay, 1, 10);
+	registerIntSetting("Delay", &delay, delay, 0, 10);
 }
 
 const char* Switcher::getModuleName() {
