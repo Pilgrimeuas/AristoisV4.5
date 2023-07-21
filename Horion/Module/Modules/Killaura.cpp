@@ -11,7 +11,7 @@ Killaura::Killaura() : IModule('P', Category::COMBAT, "FK I DONT KNOW MAKE KA LO
 	autoweapon.addEntry(EnumEntry("Switch", 1));
 	autoweapon.addEntry(EnumEntry("Silent", 2));
 	registerBoolSetting("Timer", &timer1, timer1);       // 变速
-	registerFloatSetting("tps", &timer, timer, 20, 105);  //变速值
+	registerFloatSetting("tps", &timer, timer, 20, 500);  //变速值
 	registerBoolSetting("ActualRot", &rotations, rotations);
 	//registerBoolSetting("Strafe", &strafe, strafe);
 	registerBoolSetting("MultiAura", &isMulti, isMulti);

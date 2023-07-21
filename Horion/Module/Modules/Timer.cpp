@@ -2,7 +2,7 @@
 #include "../ModuleManager.h"
 
 Timer::Timer() : IModule(0, Category::MISC, "Increase the ticks per second") {
-	registerFloatSetting("ticks per second", &timer, timer, 0, 100);
+	registerFloatSetting("ticks per second", &timer, timer, 0, 500);
 }
 
 Timer::~Timer() {
