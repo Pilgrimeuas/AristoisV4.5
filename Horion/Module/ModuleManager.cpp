@@ -65,6 +65,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new AutoTrap()));
 		moduleList.push_back(std::shared_ptr<IModule>(new HoleEsp()));
 		moduleList.push_back(std::shared_ptr<IModule>(new HoleFiller()));
+		moduleList.push_back(std::shared_ptr<IModule>(new AutoWeb()));
 
 		moduleList.push_back(std::shared_ptr<IModule>(new HudModule()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Killaura()));

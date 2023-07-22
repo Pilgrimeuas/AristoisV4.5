@@ -41,6 +41,7 @@
 #include "Modules/BowSpam.h"
 #include "Modules/LiquidMove.h"
 #include "Modules/ReverseStep.h"
+#include "Modules/AutoWeb.h"
 
 #include "Modules/CrystalAuraWTA.h"
 #include "Modules/FastXPtwo.h"

@@ -299,6 +299,7 @@
     <ClCompile Include="Horion\Module\Modules\AutoTool.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoTotem.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoTrap.cpp" />
+    <ClCompile Include="Horion\Module\Modules\AutoWeb.cpp" />
     <ClCompile Include="Horion\Module\Modules\BedAura.cpp" />
     <ClCompile Include="Horion\Module\Modules\Bhop.cpp" />
     <ClCompile Include="Horion\Module\Modules\Blink.cpp" />
@@ -535,6 +536,7 @@
     <ClInclude Include="Horion\Module\Modules\AutoTool.h" />
     <ClInclude Include="Horion\Module\Modules\AutoTotem.h" />
     <ClInclude Include="Horion\Module\Modules\AutoTrap.h" />
+    <ClInclude Include="Horion\Module\Modules\AutoWeb.h" />
     <ClInclude Include="Horion\Module\Modules\BedAura.h" />
     <ClInclude Include="Horion\Module\Modules\Bhop.h" />
     <ClInclude Include="Horion\Module\Modules\Blink.h" />
