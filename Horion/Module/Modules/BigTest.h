@@ -2,11 +2,12 @@
 #include "Module.h"
 class BigTest : public IModule {
 private:
+
+
+public:
 	int delay = 0;
 	int delay2 = 0;
 	int delay3 = 0;
-
-public:
 	float float1 = 0;
 	float float2 = 0;
 	float float3 = 0;

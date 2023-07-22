@@ -8,11 +8,15 @@ private:
 	float upanddown = 0.6f;
 	float glideMod = -0.00f;
 	float glideModEffective = 0;
-	bool rotation;
-	vec2_t angle;
-	bool trident;
+	
+
+	
 
 public:
+	bool trident;
+	bool rotation;
+	vec2_t angle;
+	bool Remp = false;
 	RiptideFly();
 	~RiptideFly();
 

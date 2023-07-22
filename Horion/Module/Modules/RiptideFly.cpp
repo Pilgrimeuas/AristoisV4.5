@@ -1,5 +1,4 @@
 #include "RiptideFly.h"
-
 RiptideFly::RiptideFly() : IModule(0, Category::MOVEMENT, "Fly like you have a trident") {
 	registerFloatSetting("Horizontal Speed", &this->speed, this->speed, 0.1f, 2.f);
 	registerFloatSetting("Vertical Speed", &this->upanddown, this->upanddown, 0.1f, 2.f);
@@ -71,7 +70,7 @@ void RiptideFly::onTick(C_GameMode* gm) {
 
 	ripList.clear();
 	g_Data.forEachEntity(FinRIP);
-
+	 Remp = ripList.empty();
 	g_Data.getLocalPlayer()->startSpinAttack();
 
 	gm->player->velocity = vec3_t(0, 0, 0);

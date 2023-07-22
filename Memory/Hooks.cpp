@@ -1895,6 +1895,8 @@ void Hooks::Actor__setRot(C_Entity* _this, vec2_t& angle) {
 	//auto rensurrMod = moduleMgr->getModule<RenSurround>();
 	auto hfMod = moduleMgr->getModule<HoleFiller>();
 	auto atMod = moduleMgr->getModule<AutoTrap>();
+	auto RipMod = moduleMgr->getModule<RiptideFly>();
+	auto TestMod = moduleMgr->getModule<BigTest>();
 	if (jtwdCAMod->isEnabled() &&
 		jtwdCAMod->rotate.GetSelectedEntry().GetValue() == 1 &&
 		_this == g_Data.getLocalPlayer() && !jtwdCAMod->placeArrEmpty) {
@@ -1903,6 +1905,9 @@ void Hooks::Actor__setRot(C_Entity* _this, vec2_t& angle) {
 	}
 	if (killauraMod->isEnabled() && !killauraMod->targetListEmpty && killauraMod->rotations && _this == g_Data.getLocalPlayer()) {
 		func(_this, angle = killauraMod->angle);
+	}
+	if (RipMod->isEnabled() && !RipMod->Remp && RipMod->rotation && _this == g_Data.getLocalPlayer()) {
+		func(_this, angle = RipMod->angle);
 	}
 	if (surrMod->isEnabled() && (surrMod->rotate.GetSelectedEntry().GetValue() == 1 || surrMod->rotate.GetSelectedEntry().GetValue() == 3) &&
 		_this == g_Data.getLocalPlayer() && surrMod->pn) {
