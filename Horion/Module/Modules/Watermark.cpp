@@ -42,7 +42,7 @@ void Watermark::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 	constexpr float borderPadding = 1;
 	constexpr float margin = 5;
 
-	static std::string name = "AristoisV3";
+	static std::string name = "AristoisV4.5";
 #ifdef _DEBUG
 	static std::string version = "";
 #elif defined _BETA
