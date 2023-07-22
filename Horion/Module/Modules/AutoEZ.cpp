@@ -46,7 +46,7 @@ void AutoEZ::onTick(C_GameMode* gm) {
 	if (!targetList.empty() && g_Data.isInGame() && sayEnemDied) {  // Send kill messages
 		if (GameData::canUseMoveKeys()) {
 			// kill msg == switch back at 4  ...
-
+			//std::string "You Got EZ"
 			for (C_Entity* tgt : targetList) {
 				kc = rand() % 11;
 
@@ -59,8 +59,9 @@ void AutoEZ::onTick(C_GameMode* gm) {
 				}
 
 				if (isDead) {
+					std::string message2 = killMsg[kc] + "|| AristoisV4.5";
 					C_TextPacket textPacket;
-					textPacket.message.setText(killMsg[kc] + "");
+					textPacket.message.setText(message2 + Utils::randomString(6));
 					textPacket.sourceName.setText(g_Data.getLocalPlayer()->getNameTag()->getText());
 					textPacket.xboxUserId = std::to_string(g_Data.getLocalPlayer()->getUserId());
 					g_Data.getClientInstance()->loopbackPacketSender->sendToServer(&textPacket);

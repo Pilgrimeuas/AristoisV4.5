@@ -17,9 +17,9 @@ void ChatSuffix::onSendPacket(C_Packet* packet) {
 		std::string Sentence;
 		std::string end;
 		std::string green1 = ">";
-		 end = " | AristoisV4.5";
+		 end = " || AristoisV4.5";
 #ifdef _DEBUG
-		end += " | AristoisV3 Beta";
+		end += " || AristoisV3 Beta";
 #endif  // _DEBUG
 		if(green)
 			Sentence = green1 + funy->message.getText() + end + " || " + Utils::randomString(6);
