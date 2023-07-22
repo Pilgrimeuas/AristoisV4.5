@@ -17,14 +17,14 @@ void ChatSuffix::onSendPacket(C_Packet* packet) {
 		std::string Sentence;
 		std::string end;
 		std::string green1 = ">";
-		 end = " | AristoisV3";
+		 end = " | AristoisV4.5";
 #ifdef _DEBUG
 		end += " | AristoisV3 Beta";
 #endif  // _DEBUG
 		if(green)
-		Sentence = green1 + funy->message.getText() + end;
+			Sentence = green1 + funy->message.getText() + end + " || " + Utils::randomString(6);
 		else
-		Sentence = funy->message.getText() + end;
+			Sentence = funy->message.getText() + end + " || " + Utils::randomString(6);
 		funy->message.resetWithoutDelete();
 		funy->message = Sentence;
 	}
