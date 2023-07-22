@@ -23,7 +23,7 @@ void C_LocalPlayer::unlockAchievements() {  // MinecraftEventing::fireEventAward
 	static fireEventAward fireEventAwardFunc = reinterpret_cast<fireEventAward>(FindSignature("48 85 C9 0F 84 ? ? ? ? 48 89 5C 24 ? 57 48 81 EC ? ? ? ? 48 8B 01"));
 	for (int i = 0; i < 118; i++)
 		fireEventAwardFunc(this, i);
-}
+}//48 89 5C 24 08 48 89 74  24 10 57 48 83 EC 20 48 8B 99 28 05 00 00 48 8B F9 48 2B 99 20 05 00 00 
 void C_LocalPlayer::applyTurnDelta(vec2_t *viewAngleDelta) {
 	using applyTurnDelta = void(__thiscall *)(void *, vec2_t *);
 	static applyTurnDelta TurnDelta = reinterpret_cast<applyTurnDelta>(FindSignature("48 8B C4 48 89 58 18 48 89 68 20 56 57 41 56 48 81 EC ?? ?? ?? ?? 0F 29 70 D8 0F 29 78 C8 44 0F 29 40 ?? 48 8B 05 ?? ?? ?? ??"));

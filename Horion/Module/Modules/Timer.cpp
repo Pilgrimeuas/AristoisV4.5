@@ -58,14 +58,11 @@ void TimerFinder(C_Entity* currentEntity, bool isRegularEntity) {
 
 	}
 }
+
 void Timer::onTick(C_GameMode* gm) {
-	timerList.clear();
+	auto plr = g_Data.getLocalPlayer();
 	static auto killauraMod = moduleMgr->getModule<Killaura>();
-	g_Data.forEachEntity(TimerFinder);
-	//bool targetListEmpty = timerList.empty();
-	// Loop through all our players and retrieve their information
-	
-	if (!timerList.empty() && killauraMod->isEnabled()) {
+	if (killauraMod->isEnabled() && plr->swing()) {
 		if ((g_Data.getLocalPlayer()->getSelectedItemId() == 259 || g_Data.getLocalPlayer()->getSelectedItemId() == 426) && g_Data.isRightClickDown()) {
 			g_Data.getClientInstance()->minecraft->setTimerSpeed(20.f);
 		} else

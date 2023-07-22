@@ -70,15 +70,7 @@ public:
 class C_Player;
 class Dimension;
 struct MobEffectInstance;
-/*class C_EntityEffect {
-protected:
-	static uintptr_t **vfTables;
 
-public:
-	C_EntityEffect() {
-		memset(this, 0x0, sizeof(C_EntityEffect));
-	}
-};*/
 #pragma pack(push, 4)
 class C_Entity {
 public:
@@ -197,9 +189,7 @@ public:
 	virtual __int64 setLastHurtByC_Player(C_Player *);                                      // 3
 	virtual __int64 getLastHurtMob(void);                                                   // 4
 	virtual __int64 setLastHurtMob(C_Entity *);                                             // 5
-	virtual __int64 outOfWorld(void);  
-	//virtual MobEffectInstance *getEffect(MobEffectInstance *const &); 
-	//virtual __int64 getAllEffect(void);                                                      // 6
+	virtual __int64 outOfWorld(void);                                                       // 6
 	virtual __int64 reloadHardcoded();                                                      // 7
 	virtual __int64 reloadHardcodedClient();                                                // 8
 	virtual __int64 initializeComponents();                                                 // 9
@@ -251,7 +241,7 @@ public:
 	virtual __int64 flagPassengerToRemove(C_Entity *);                                      // 55
 	virtual __int64 getExitTip(TextHolder *, int);                                          // 56
 	virtual __int64 intersects(vec3_t const &, vec3_t const &);                             // 57
-	virtual bool isInWall(void);                                                          // 58
+	virtual bool isInWall(void);                                                            // 58
 	virtual bool isInvisible(void);                                                         // 59
 	virtual bool canShowNameTag(void);                                                      // 60
 	virtual bool canExistInPeaceful(void);                                                  // 61
@@ -268,8 +258,7 @@ public:
 	virtual bool hasEnteredWater(void);                                                     // 72
 	virtual bool isInLava(void);                                                            // 73
 	virtual bool isUnderLiquid(__int64);                                                    // 74
-	virtual bool isOverWater(void);                                                         //75
-	//virtual bool isInRain(void);//virtual bool isInSnow(void);                                                             // 75
+	virtual bool isOverWater(void);                                                         // 75
 	virtual __int64 setBlockMovementSlowdownMultiplier(vec3_t const &);                     // 76
 	virtual __int64 resetBlockMovementSlowdownMultiplier(void);                             // 77
 	virtual __int64 getCameraOffset(void);                                                  // 78

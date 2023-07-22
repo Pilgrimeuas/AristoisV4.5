@@ -302,6 +302,7 @@
     <ClCompile Include="Horion\Module\Modules\AutoWeb.cpp" />
     <ClCompile Include="Horion\Module\Modules\BedAura.cpp" />
     <ClCompile Include="Horion\Module\Modules\Bhop.cpp" />
+    <ClCompile Include="Horion\Module\Modules\BigTest.cpp" />
     <ClCompile Include="Horion\Module\Modules\Blink.cpp" />
     <ClCompile Include="Horion\Module\Modules\BlockESP.cpp" />
     <ClCompile Include="Horion\Module\Modules\BowSpam.cpp" />
@@ -444,14 +445,12 @@
     <ClCompile Include="SDK\CCamera.cpp" />
     <ClCompile Include="SDK\CClientInstance.cpp" />
     <ClCompile Include="SDK\CComplexInventoryTransaction.cpp" />
-    <ClCompile Include="SDK\CCrossbowItem.cpp" />
     <ClCompile Include="SDK\CEntity.cpp" />
     <ClCompile Include="SDK\CGameMode.cpp" />
     <ClCompile Include="SDK\CInventory.cpp" />
     <ClCompile Include="SDK\CInventoryTransaction.cpp" />
     <ClCompile Include="SDK\CItem.cpp" />
     <ClCompile Include="SDK\CMinecraftUIRenderContext.cpp" />
-    <ClCompile Include="SDK\CMobEffectInstance.cpp" />
     <ClCompile Include="SDK\CMoveInputHandler.cpp" />
     <ClCompile Include="SDK\CPacket.cpp" />
     <ClCompile Include="SDK\MatrixStack.cpp" />
@@ -541,6 +540,7 @@
     <ClInclude Include="Horion\Module\Modules\AutoWeb.h" />
     <ClInclude Include="Horion\Module\Modules\BedAura.h" />
     <ClInclude Include="Horion\Module\Modules\Bhop.h" />
+    <ClInclude Include="Horion\Module\Modules\BigTest.h" />
     <ClInclude Include="Horion\Module\Modules\Blink.h" />
     <ClInclude Include="Horion\Module\Modules\BlockESP.h" />
     <ClInclude Include="Horion\Module\Modules\BowSpam.h" />
@@ -705,7 +705,6 @@
     <ClInclude Include="SDK\CClientInstance.h" />
     <ClInclude Include="SDK\CClientInstanceScreenModel.h" />
     <ClInclude Include="SDK\CComplexInventoryTransaction.h" />
-    <ClInclude Include="SDK\CCrossbowItem.h" />
     <ClInclude Include="SDK\CEntity.h" />
     <ClInclude Include="SDK\CEntityList.h" />
     <ClInclude Include="SDK\CGameMode.h" />
@@ -717,7 +716,6 @@
     <ClInclude Include="SDK\CItem.h" />
     <ClInclude Include="SDK\CLoopbackPacketSender.h" />
     <ClInclude Include="SDK\CMinecraftUIRenderContext.h" />
-    <ClInclude Include="SDK\CMobEffectInstance.h" />
     <ClInclude Include="SDK\CMoveInputHandler.h" />
     <ClInclude Include="SDK\CPacket.h" />
     <ClInclude Include="SDK\CRakNetInstance.h" />

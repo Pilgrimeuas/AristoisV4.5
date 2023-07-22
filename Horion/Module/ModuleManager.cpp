@@ -169,6 +169,8 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new AutoTool()));
 		moduleList.push_back(std::shared_ptr<IModule>(new AutoObsidian()));
 		moduleList.push_back(std::shared_ptr<IModule>(new RiptideFly()));
+		moduleList.push_back(std::shared_ptr<IModule>(new BigTest()));
+		
 
 #ifdef _DEBUG
 		moduleList.push_back(std::shared_ptr<IModule>(new PacketLogger()));
