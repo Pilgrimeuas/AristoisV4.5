@@ -48,7 +48,7 @@ void falshPick() {  // get Piston 29
 	for (int n = 0; n < 9; n++) {
 		C_ItemStack* stack = inv->getItemStack(n);
 		if (stack->item != nullptr) {
-			if (stack->getItem()->itemId == 606) {  // select anchor
+			if (stack->getItem()->itemId == 606 || stack->getItem()->itemId == 318 ) {  // select ¸ä×Ó
 				supplies->selectedHotbarSlot = n;
 				return;
 			}
@@ -206,12 +206,12 @@ void PacketMine::onPreRender(C_MinecraftUIRenderContext* ctx) {
 	float zero = rentimer / 2;
 	vec3_t pos(block.toVec3t().add(0.5));
 	vec3_t pos2(block.toVec3t());
-	DrawUtils::setColor(.2f, .6f, .9f, 0.4f);
+	//DrawUtils::setColor(.255f, .255f, .255f, 0.1f);
 	{
-		DrawUtils::drawBox(pos2, pos2.add(1, 1, 1), 1, true);
+		//DrawUtils::drawBox(pos2, pos2.add(1, 1, 1), 1, true);
 	}
 
-	DrawUtils::setColor(.3f, 8.f, .9f, 0.2f);
+	DrawUtils::setColor(1.f, 1.f, 1.f, 0.2f);
 	{
 		vec2_t fill1 = DrawUtils::worldToScreen(vec3_t(pos).add(zero, zero, zero));
 		vec2_t fill2 = DrawUtils::worldToScreen(vec3_t(pos).add(-zero, zero, zero));
