@@ -263,9 +263,10 @@ void Hooks::Init() {
 			glm::mat4 View = matrix;
 			
 			matrix = View;
-				// Blocking Animation
-			auto clickGUI = moduleMgr->getModule<ClickGuiMod>();
+			// Blocking Animation
+			
 			if (animations->isEnabled()) {
+				auto clickGUI = moduleMgr->getModule<ClickGuiMod>();
 				// Custom Settings
 				if (animations->translate)
 					matrix = glm::translate<float>(matrix, glm::vec3(animations->xPos, animations->yPos, animations->zPos)); // X Y Z

@@ -50,28 +50,7 @@ void PlayerList::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 					} else if (FriendList::findPlayer(ye->getNameTag()->getText()) && !moduleMgr->getModule<NoFriends>()->isEnabled()) {
 						DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f), isThisSoBroken, MC_Color(0, 255, 0), 1.f);
 					} else {
-						static auto ThemeMod = moduleMgr->getModule<Theme>();
-						static float rcolors[4];
-						if (ThemeMod->rainbow) {
-							if (rcolors[3] < 1) {
-								rcolors[0] = 1;
-								rcolors[1] = 0.2f;
-								rcolors[2] = 0.2f;
-								rcolors[3] = 1;
-							}
-
-							Utils::ColorConvertRGBtoHSV(rcolors[0], rcolors[1], rcolors[2], rcolors[0], rcolors[1], rcolors[2]);  // perfect code, dont question this
-
-							rcolors[0] += 0.0015f;
-							if (rcolors[0] >= 1) {
-								rcolors[0] = 0;
-							}
-
-							Utils::ColorConvertHSVtoRGB(rcolors[0], rcolors[1], rcolors[2], rcolors[0], rcolors[1], rcolors[2]);
-							DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(rcolors), 1.f);
-						} else {
-							DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(Theme::rFloat, Theme::gFloat, Theme::bFloat), 1.f);
-						}
+						DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(Theme::rFloat, Theme::gFloat, Theme::bFloat), 1.f);
 					}
 
 				} else {
@@ -80,28 +59,7 @@ void PlayerList::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 					} else if (FriendList::findPlayer(ye->getNameTag()->getText()) && !moduleMgr->getModule<NoFriends>()->isEnabled()) {
 						DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f), isThisSoBroken, MC_Color(0, 255, 0), 1.f);
 					} else {
-						static auto ThemeMod = moduleMgr->getModule<Theme>();
-						static float rcolors[4];
-						if (ThemeMod->rainbow) {
-							if (rcolors[3] < 1) {
-								rcolors[0] = 1;
-								rcolors[1] = 0.2f;
-								rcolors[2] = 0.2f;
-								rcolors[3] = 1;
-							}
-
-							Utils::ColorConvertRGBtoHSV(rcolors[0], rcolors[1], rcolors[2], rcolors[0], rcolors[1], rcolors[2]);  // perfect code, dont question this
-
-							rcolors[0] += 0.0015f;
-							if (rcolors[0] >= 1) {
-								rcolors[0] = 0;
-							}
-
-							Utils::ColorConvertHSVtoRGB(rcolors[0], rcolors[1], rcolors[2], rcolors[0], rcolors[1], rcolors[2]);
-							DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(rcolors), 1.f);
-						} else {
-							DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(Theme::rFloat, Theme::gFloat, Theme::bFloat), 1.f);
-						}
+						DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(255, 255, 255), 1.f);
 					}
 				}
 				if (armour) {

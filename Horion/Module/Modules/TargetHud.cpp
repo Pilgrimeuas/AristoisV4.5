@@ -71,7 +71,7 @@ void TargetHud::onTick(C_GameMode* gm) {
 	Odelay++;
 	targethud++;
 // Attack all entitys in targetList
-	/*	if (isMulti) {
+		if (isMulti) {
 		for (auto& i : targetList) {
 			if (!(i->damageTime > 1 && hurttime)) {
 				// g_Data.getLocalPlayer()->swing();
@@ -82,7 +82,6 @@ void TargetHud::onTick(C_GameMode* gm) {
 		}
 	}
 	Odelay = 0;
-}*/
 }
 
 void TargetHud::onEnable() {
@@ -99,29 +98,29 @@ void TargetHud::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 				std::string text = targetList[0]->getNameTag()->getText();
 				text = Utils::sanitize(text);
 
-				vec3_t targetpos = *targetList[0]->getPos();
-				int tx = targetpos.x;
-				int ty = targetpos.y;
-				int tz = targetpos.z;
-				auto posstring = std::string("Pos: " + std::to_string(tx) + ", " + std::to_string(ty) + ", " + std::to_string(tz));
+				//vec3_t targetpos = *targetList[0]->getPos();
+				//int tx = targetpos.x;
+				//int ty = targetpos.y;
+				//int tz = targetpos.z;
+				//auto posstring = std::string("Pos: " + std::to_string(tx) + ", " + std::to_string(ty) + ", " + std::to_string(tz));
 
-				MC_Color hpcolor = MC_Color(0, 255, 0);
+				//MC_Color hpcolor = MC_Color(0, 255, 0);
 
 				int health = targetList[0]->getHealth();
-				int maxhealth = 20;
+				int maxhealth = 36;
 				float health1 = targetList[0]->getHealth();
-				float maxhealth1 = 20;
+				float maxhealth1 = 36;
 				float hpbarwidth = (health1 / maxhealth1) * 100;
 
 				std::string healthstring = std::to_string(health) + "/" + std::to_string(maxhealth);
 				int healthwidth = DrawUtils::getTextWidth(&healthstring);
-				float dist = (*targetList[0]->getPos()).dist(*g_Data.getLocalPlayer()->getPos());
-				float dist1 = round(dist);
+				//float dist = (*targetList[0]->getPos()).dist(*g_Data.getLocalPlayer()->getPos());
+				//float dist1 = round(dist);
 
-				std::string distancestr = "Distance: " + std::to_string((int)dist) + std::string(".") + std::to_string((int)(dist * 10) - ((int)dist * 10)) + "m";
+				//std::string distancestr = "Distance: " + std::to_string((int)dist) + std::string(".") + std::to_string((int)(dist * 10) - ((int)dist * 10)) + "m";
 				std::string realname = text;
 
-				float diswidth = DrawUtils::getTextWidth(&distancestr);
+				//float diswidth = DrawUtils::getTextWidth(&distancestr);
 				float namewidth = DrawUtils::getTextWidth(&realname);
 
 				// HEALTH COLOR

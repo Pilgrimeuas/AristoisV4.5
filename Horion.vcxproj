@@ -310,6 +310,7 @@
     <ClCompile Include="Horion\Module\Modules\ChatSuffix.cpp" />
     <ClCompile Include="Horion\Module\Modules\CityESP.cpp" />
     <ClCompile Include="Horion\Module\Modules\ClickGuiMod.cpp" />
+    <ClCompile Include="Horion\Module\Modules\CombatInfo.cpp" />
     <ClCompile Include="Horion\Module\Modules\Coordinates.cpp" />
     <ClCompile Include="Horion\Module\Modules\Criticals.cpp" />
     <ClCompile Include="Horion\Module\Modules\CrystalAurad.cpp" />

@@ -1,11 +1,13 @@
 #include "Watermark.h"
 #include "../../DrawUtils.h"
-
+#include"../../../Utils/ColorUtil.h"
 Watermark::Watermark() : IModule(0, Category::HUD, "Watermark of thee client") {
 	registerBoolSetting("Outline", &this->outline, this->outline);
 	registerBoolSetting("Background", &this->background, this->background);
 	registerBoolSetting("Bottom", &this->bottom, this->bottom);
 	registerBoolSetting("RGBA", &this->rgba, this->rgba);
+	registerIntSetting("Y", &wy, wy, 0, 500);
+	registerIntSetting("X", &wx, wx, 0, 1000);
 }
 
 Watermark::~Watermark() {
@@ -19,6 +21,8 @@ void Watermark::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 	auto player = g_Data.getLocalPlayer();
 	if (player == nullptr) 
 		return;
+	windowSize.x = wx;
+	windowSize.y = wy;
 	std::string playername2 = player->getNameTag()->getText();
 	std::string playername = " | " + playername2;
 	MC_Color arrayColor = DrawUtils::getWaveRGB(31, 240, 228, 0, 150, 255, 5 * 3);  // Wave
@@ -31,7 +35,7 @@ void Watermark::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 		disabledRcolors[2] = std::min(1.f, rcolors[2] * 0.4f + 0.2f);
 		disabledRcolors[3] = 1;
 	}
-	vec2_t windowSize = g_Data.getClientInstance()->getGuiData()->windowSize;
+	
 	constexpr float nameTextSize = 1.5f;
 	constexpr float versionTextSize = 0.7f;
 	static const float textHeight = (nameTextSize + versionTextSize * 0.7f /* We don't quite want the version string in its own line, just a bit below the name */) * DrawUtils::getFont(Fonts::SMOOTH)->getLineHeight();
@@ -46,30 +50,31 @@ void Watermark::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 #else
 	static std::string version = "";
 #endif
-
+	MC_Color sbcolor = ColorUtil::interfaceColor(2);
+	MC_Color plrnamecolor = ColorUtil::interfaceColor(3);
 	float nameLength = DrawUtils::getTextWidth(&name, nameTextSize);
-	float fullTextLength = nameLength + DrawUtils::getTextWidth(&version, versionTextSize);
+	float nameLength2 = DrawUtils::getTextWidth(&playername2, nameTextSize);
+	float fullTextLength = nameLength2 + nameLength + DrawUtils::getTextWidth(&version, versionTextSize);
 	if (bottom) {
 		vec4_t rect = vec4_t(
 			0.f + margin - borderPadding,
 			windowSize.y + margin - textHeight,
 			0.f + margin + fullTextLength + borderPadding * 2,
 			windowSize.y + margin);
-
 		if (background) {
 			DrawUtils::fillRectangle(rect, MC_Color(12, 12, 12), 0.01f);
 		}
 
 		if (outline) {
-			DrawUtils::drawRectangle(rect, MC_Color(arrayColor), 1.f, 1.f);
+			DrawUtils::drawRectangle(rect, sbcolor, 1.f, 1.f);
 		}
 
 		if (rgba) {
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, MC_Color(arrayColor), nameTextSize);
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, MC_Color(arrayColor), nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, sbcolor, nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, plrnamecolor, nameTextSize);
 		} else {
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, MC_Color(255, 255, 255), nameTextSize);
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, MC_Color(255, 255, 255), nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, sbcolor, nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, plrnamecolor, nameTextSize);
 		}
 	} else {
 		vec4_t rect = vec4_t(
@@ -83,14 +88,14 @@ void Watermark::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 		}
 
 		if (outline) {
-			DrawUtils::drawRectangle(rect, MC_Color(arrayColor), 1.f, 1.f);
+			DrawUtils::drawRectangle(rect, sbcolor, 1.f, 1.f);
 		}
 		if (rgba) {
 			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, MC_Color(arrayColor), nameTextSize);
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, MC_Color(arrayColor), nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, plrnamecolor, nameTextSize);
 		} else {
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, MC_Color(255, 255, 255), nameTextSize);
-			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, MC_Color(255, 255, 255), nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding, rect.y), &name, sbcolor, nameTextSize);
+			DrawUtils::drawText(vec2_t(rect.x + borderPadding + nameLength, rect.y), &playername, plrnamecolor, nameTextSize);
 		}
 	}
 }
