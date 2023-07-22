@@ -144,7 +144,7 @@ struct Armor {
 		}
 	};
 	void Killaura::onTick(C_GameMode* gm) {
-		if (g_Data.getLocalPlayer()->getSelectedItemId() == 259 && GameData::isRightClickDown()) return;  //吃东西停止杀戮光环
+		//if (g_Data.getLocalPlayer()->getSelectedItemId() == 259 && GameData::isRightClickDown()) return;  //吃东西停止杀戮光环
 		C_LocalPlayer* localPlayer = g_Data.getLocalPlayer();
 		if (g_Data.getLocalPlayer()->getSelectedItemId() == 259 && g_Data.isRightClickDown())
 			return;

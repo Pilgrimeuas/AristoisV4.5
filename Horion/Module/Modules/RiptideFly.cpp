@@ -68,8 +68,10 @@ void RiptideFly::onEnable() {
 void RiptideFly::onTick(C_GameMode* gm) {
 	if (g_Data.getLocalPlayer() == nullptr)
 		return;
+
 	ripList.clear();
 	g_Data.forEachEntity(FinRIP);
+
 	g_Data.getLocalPlayer()->startSpinAttack();
 
 	gm->player->velocity = vec3_t(0, 0, 0);
@@ -83,8 +85,11 @@ void RiptideFly::onTick(C_GameMode* gm) {
 			glideModEffective -= upanddown;
 	}
 	gm->player->velocity.y = glideModEffective;
-	if (rotation) {
-		angle = g_Data.getLocalPlayer()->getPos()->CalcAngle(*ripList[0]->getPos());
+
+	if (!ripList.empty()) {
+		if (rotation) {
+			angle = g_Data.getLocalPlayer()->getPos()->CalcAngle(*ripList[0]->getPos());
+		}
 	}
 }
 

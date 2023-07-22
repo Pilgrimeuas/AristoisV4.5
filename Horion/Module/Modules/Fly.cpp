@@ -15,6 +15,8 @@ const char* Fly::getModuleName() {
 }
 
 void Fly::onTick(C_GameMode* gm) {
+	if (g_Data.getLocalPlayer() == nullptr)
+		return;
 	gm->player->velocity = vec3_t(0, 0, 0);
 	glideModEffective = glideMod;
 	C_GameSettingsInput* input = g_Data.getClientInstance()->getGameSettingsInput();

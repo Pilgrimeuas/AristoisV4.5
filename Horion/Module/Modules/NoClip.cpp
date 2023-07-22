@@ -15,6 +15,8 @@ const char* NoClip::getModuleName() {
 }
 
 void NoClip::onTick(C_GameMode* gm) {
+	if (g_Data.getLocalPlayer() == nullptr)
+		return;
 	gm->player->aabb.upper.y = gm->player->aabb.lower.y - (float)1.8f;
 	gm->player->velocity = vec3_t(0, 0, 0);
 	glideModEffective = glideMod;

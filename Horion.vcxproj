@@ -451,6 +451,7 @@
     <ClCompile Include="SDK\CInventoryTransaction.cpp" />
     <ClCompile Include="SDK\CItem.cpp" />
     <ClCompile Include="SDK\CMinecraftUIRenderContext.cpp" />
+    <ClCompile Include="SDK\CMobEffectInstance.cpp" />
     <ClCompile Include="SDK\CMoveInputHandler.cpp" />
     <ClCompile Include="SDK\CPacket.cpp" />
     <ClCompile Include="SDK\MatrixStack.cpp" />
@@ -716,6 +717,7 @@
     <ClInclude Include="SDK\CItem.h" />
     <ClInclude Include="SDK\CLoopbackPacketSender.h" />
     <ClInclude Include="SDK\CMinecraftUIRenderContext.h" />
+    <ClInclude Include="SDK\CMobEffectInstance.h" />
     <ClInclude Include="SDK\CMoveInputHandler.h" />
     <ClInclude Include="SDK\CPacket.h" />
     <ClInclude Include="SDK\CRakNetInstance.h" />
