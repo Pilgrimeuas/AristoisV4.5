@@ -170,6 +170,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new AutoObsidian()));
 		moduleList.push_back(std::shared_ptr<IModule>(new RiptideFly()));
 		moduleList.push_back(std::shared_ptr<IModule>(new BigTest()));
+		moduleList.push_back(std::shared_ptr<IModule>(new Timer2()));
 		
 
 #ifdef _DEBUG

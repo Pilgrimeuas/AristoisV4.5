@@ -158,6 +158,8 @@
 #include "Modules/Norender.h"
 #include "Modules/RiptideFly.h"
 #include "Modules/BigTest.h"
+#include "Modules/Timer2.h"
+
 #ifdef _DEBUG
 #include "Modules/PacketLogger.h"
 #include "Modules/TestModule.h"
