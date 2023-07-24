@@ -403,6 +403,7 @@
     <ClCompile Include="Horion\Module\Modules\Theme.cpp" />
     <ClCompile Include="Horion\Module\Modules\TimeChanger.cpp" />
     <ClCompile Include="Horion\Module\Modules\Timer.cpp" />
+    <ClCompile Include="Horion\Module\Modules\Timer2.cpp" />
     <ClCompile Include="Horion\Module\Modules\Tower.cpp" />
     <ClCompile Include="Horion\Module\Modules\Tracer.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoEZ.cpp" />
@@ -640,6 +641,7 @@
     <ClInclude Include="Horion\Module\Modules\Theme.h" />
     <ClInclude Include="Horion\Module\Modules\TimeChanger.h" />
     <ClInclude Include="Horion\Module\Modules\Timer.h" />
+    <ClInclude Include="Horion\Module\Modules\Timer2.h" />
     <ClInclude Include="Horion\Module\Modules\Tower.h" />
     <ClInclude Include="Horion\Module\Modules\Tracer.h" />
     <ClInclude Include="Horion\Module\Modules\AutoEZ.h" />
@@ -726,6 +728,7 @@
     <ClInclude Include="SDK\Tag.h" />
     <ClInclude Include="SDK\Tessellator.h" />
     <ClInclude Include="SDK\TextHolder.h" />
+    <ClInclude Include="Timer2.h" />
     <ClInclude Include="Utils\ChakraHelper.h" />
     <ClInclude Include="Utils\DllHelper.h" />
     <ClInclude Include="Utils\HMath.h" />
