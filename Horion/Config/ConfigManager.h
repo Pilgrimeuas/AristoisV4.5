@@ -26,7 +26,7 @@ public:
 	ConfigManager();
 	~ConfigManager();
 
-	std::string currentConfig = "AristoisV2";
+	std::string currentConfig = "AristoisV4.5";
 
 	void loadConfig(std::string name, bool create);
 	void saveConfig();
