@@ -42,6 +42,7 @@
 #include "Modules/LiquidMove.h"
 #include "Modules/ReverseStep.h"
 #include "Modules/AutoWeb.h"
+#include "Modules/AutoPush.h"
 
 #include "Modules/CrystalAuraWTA.h"
 #include "Modules/FastXPtwo.h"

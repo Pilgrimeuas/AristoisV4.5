@@ -1,10 +1,10 @@
-﻿#include "HoleKicker.h"
+﻿#include "AutoPush.h"
 
 #include "../../SDK/Tag.h"
 
-HoleKicker::HoleKicker() : IModule(VK_NUMPAD0, Category::CPVP, "LOL AutoPush") {
+AutoPush::AutoPush() : IModule(VK_NUMPAD0, Category::CPVP, "LOL AutoPush") {
 	this->registerIntSetting("range", &this->range, this->range, 3, 10);
-	this->registerIntSetting("Redstone3Delay", &this->pdelay, this->pdelay, 0, 30);
+	this->registerIntSetting("button0Delay", &this->pdelay, this->pdelay, 0, 30);
 	this->registerIntSetting("Trap0Delay", &this->trapdelay, this->trapdelay, 0, 30);
 	this->registerIntSetting("Piston0Delay", &this->rdelay, this->rdelay, 0, 30);
 	this->registerIntSetting("idk 0delay", &this->cdelay, this->cdelay, 0, 30);
@@ -19,19 +19,19 @@ HoleKicker::HoleKicker() : IModule(VK_NUMPAD0, Category::CPVP, "LOL AutoPush") {
 	//this->registerBoolSetting("East", &this->e2, this->e2);
 	//this->registerBoolSetting("West", &this->w2, this->w2);
 }
-HoleKicker::~HoleKicker() {
+AutoPush::~AutoPush() {
 }
-const char* HoleKicker::getModuleName() {
-	return ("RedStonePush");
+const char* AutoPush::getModuleName() {
+	return ("buttonPush");
 }
 
 static std::vector<C_Entity*> targetList;
 
-void HoleKicker::onEnable() {
+void AutoPush::onEnable() {
 	targetList.clear();
 }
 
-bool findEntByCC(C_Entity* curEnt, bool isRegularEntity) {
+bool findEntByCC2(C_Entity* curEnt, bool isRegularEntity) {
 	std::string TargetUtilName = curEnt->getNameTag()->getText();
 	if (curEnt == nullptr) return false;
 	if (curEnt == g_Data.getLocalPlayer()) return false;  // Skip Local player
@@ -45,14 +45,14 @@ bool findEntByCC(C_Entity* curEnt, bool isRegularEntity) {
 	if (!Target::isValidTarget(curEnt)) return false;
 
 	float dist = (*curEnt->getPos()).dist(*g_Data.getLocalPlayer()->getPos());
-	if (dist <= moduleMgr->getModule<HoleKicker>()->range) {
+	if (dist <= moduleMgr->getModule<AutoPush>()->range) {
 		targetList.push_back(curEnt);
 		return true;
 	}
 	return false;
 }
 
-bool placeBloKKK2(vec3_t blkPlacement) {
+bool placeBloKKK22(vec3_t blkPlacement) {
 	blkPlacement = blkPlacement.floor();
 
 	C_Block* block = g_Data.getLocalPlayer()->region->getBlock(vec3_ti(blkPlacement));
@@ -93,7 +93,7 @@ bool placeBloKKK2(vec3_t blkPlacement) {
 	return false;
 }
 
-void getAnchor3() {  // get RedStone id 152
+void getAnchor32() {  // get RedStone id 152
 	auto supplies = g_Data.getLocalPlayer()->getSupplies();
 	auto inv = supplies->inventory;  // g_Data.getLocalPlayer()->getSupplies()->inventory->getItemStack(g_Data.getLocalPlayer()->getSupplies())->getItem()->itemID
 	if (g_Data.getLocalPlayer()->getSelectedItemId() == 33 || g_Data.getLocalPlayer()->getSelectedItemId() == 29)
@@ -110,7 +110,7 @@ void getAnchor3() {  // get RedStone id 152
 	}
 }
 
-void getGS3() {  // get Piston 29  //77 is button //143 is button
+void getGS32() {  // get Piston 29  //77 is button //143 is button
 	auto supplies = g_Data.getLocalPlayer()->getSupplies();
 	auto inv = supplies->inventory;  // g_Data.getLocalPlayer()->getSupplies()->inventory->getItemStack(g_Data.getLocalPlayer()->getSupplies())->getItem()->itemID
 	if (g_Data.getLocalPlayer()->getSelectedItemId() == 152 || g_Data.getLocalPlayer()->getSelectedItemId() == 76 || g_Data.getLocalPlayer()->getSelectedItemId() == 77 || g_Data.getLocalPlayer()->getSelectedItemId() == 143 || g_Data.getLocalPlayer()->getSelectedItemId() == 395 || g_Data.getLocalPlayer()->getSelectedItemId() == 396 || g_Data.getLocalPlayer()->getSelectedItemId() == 397 || g_Data.getLocalPlayer()->getSelectedItemId() == 398 || g_Data.getLocalPlayer()->getSelectedItemId() == 399)
@@ -126,7 +126,7 @@ void getGS3() {  // get Piston 29  //77 is button //143 is button
 		}
 	}
 }
-bool spswap3(int Itemid) {
+bool spswap32(int Itemid) {
 	__int64 id = *g_Data.getLocalPlayer()->getUniqueId();
 	C_PlayerInventoryProxy* supplies = g_Data.getLocalPlayer()->getSupplies();
 	C_Inventory* inv = supplies->inventory;
@@ -144,7 +144,7 @@ bool spswap3(int Itemid) {
 	}
 	return false;
 }
-bool stopsp3() {
+bool stopsp32() {
 	__int64 id = -1;
 	C_PlayerInventoryProxy* supplies = g_Data.getLocalPlayer()->getSupplies();
 	C_Inventory* inv = supplies->inventory;
@@ -164,7 +164,7 @@ bool stopsp3() {
 	// g_Data.getClientInstance()->loopbackPacketSender->sendToServer(&a);
 	// return;
 }
-bool invcheck3(int Itemid) {
+bool invcheck32(int Itemid) {
 	__int64 id = *g_Data.getLocalPlayer()->getUniqueId();
 	C_PlayerInventoryProxy* supplies = g_Data.getLocalPlayer()->getSupplies();
 	C_Inventory* inv = supplies->inventory;
@@ -180,7 +180,7 @@ bool invcheck3(int Itemid) {
 	}
 	return false;
 }
-void HoleKicker::onTick(C_GameMode* gm) {
+void AutoPush::onTick(C_GameMode* gm) {
 	static auto Reachmod = moduleMgr->getModule<Reach>();
 	C_LocalPlayer* player = g_Data.getLocalPlayer();
 	if (g_Data.getLocalPlayer() == nullptr)
@@ -188,42 +188,42 @@ void HoleKicker::onTick(C_GameMode* gm) {
 	if (!g_Data.canUseMoveKeys())
 		return;
 	targetList.clear();
-	g_Data.forEachEntity(findEntByCC);
+	g_Data.forEachEntity(findEntByCC2);
 	int place = 0;
 	/* X 360 X   315-45= s
   X X X     45-135 = e
   X X X     135-225 = n   1 =
 			225-315 = w*/
 	int look = (int)(player->yaw + 180);
-	//		if (moduleMgr->getModule<HoleKicker>()->lookat.selected != 0)
-	// moduleMgr->getModule<HoleKicker>()->lookat.selected = 0;
+	//		if (moduleMgr->getModule<AutoPush>()->lookat.selected != 0)
+	// moduleMgr->getModule<AutoPush>()->lookat.selected = 0;
 	if (look >= 45 && look <= 135) {
-		if (!moduleMgr->getModule<HoleKicker>()->w2)
-			moduleMgr->getModule<HoleKicker>()->w2 = true;  // w
-		moduleMgr->getModule<HoleKicker>()->s2 = false;     // e
-		moduleMgr->getModule<HoleKicker>()->e2 = false;     // e
-		moduleMgr->getModule<HoleKicker>()->n2 = false;     // e
+		if (!moduleMgr->getModule<AutoPush>()->w2)
+			moduleMgr->getModule<AutoPush>()->w2 = true;  // w
+		moduleMgr->getModule<AutoPush>()->s2 = false;     // e
+		moduleMgr->getModule<AutoPush>()->e2 = false;     // e
+		moduleMgr->getModule<AutoPush>()->n2 = false;     // e
 	}
 	if (look >= 135 && look <= 225) {
-		if (!moduleMgr->getModule<HoleKicker>()->s2)        /// s
-			moduleMgr->getModule<HoleKicker>()->s2 = true;  // e
-		moduleMgr->getModule<HoleKicker>()->e2 = false;     // e
-		moduleMgr->getModule<HoleKicker>()->w2 = false;     // e
-		moduleMgr->getModule<HoleKicker>()->n2 = false;     // e
+		if (!moduleMgr->getModule<AutoPush>()->s2)        /// s
+			moduleMgr->getModule<AutoPush>()->s2 = true;  // e
+		moduleMgr->getModule<AutoPush>()->e2 = false;     // e
+		moduleMgr->getModule<AutoPush>()->w2 = false;     // e
+		moduleMgr->getModule<AutoPush>()->n2 = false;     // e
 	}
 	if (look >= 225 && look <= 315) {
-		if (!moduleMgr->getModule<HoleKicker>()->e2)        // e
-			moduleMgr->getModule<HoleKicker>()->e2 = true;  // e
-		moduleMgr->getModule<HoleKicker>()->s2 = false;     // e
-		moduleMgr->getModule<HoleKicker>()->w2 = false;     // e
-		moduleMgr->getModule<HoleKicker>()->n2 = false;     // e
+		if (!moduleMgr->getModule<AutoPush>()->e2)        // e
+			moduleMgr->getModule<AutoPush>()->e2 = true;  // e
+		moduleMgr->getModule<AutoPush>()->s2 = false;     // e
+		moduleMgr->getModule<AutoPush>()->w2 = false;     // e
+		moduleMgr->getModule<AutoPush>()->n2 = false;     // e
 	}
 	if ((look >= 0 && look <= 45) || (look >= 315 && look <= 360)) {
-		if (!moduleMgr->getModule<HoleKicker>()->n2)         // n
-			moduleMgr->getModule<HoleKicker>()->e2 = false;  // e
-		moduleMgr->getModule<HoleKicker>()->s2 = false;      // e
-		moduleMgr->getModule<HoleKicker>()->w2 = false;      // e
-		moduleMgr->getModule<HoleKicker>()->n2 = true;       // e
+		if (!moduleMgr->getModule<AutoPush>()->n2)         // n
+			moduleMgr->getModule<AutoPush>()->e2 = false;  // e
+		moduleMgr->getModule<AutoPush>()->s2 = false;      // e
+		moduleMgr->getModule<AutoPush>()->w2 = false;      // e
+		moduleMgr->getModule<AutoPush>()->n2 = true;       // e
 	}
 
 	if (!targetList.empty()) {
@@ -231,18 +231,18 @@ void HoleKicker::onTick(C_GameMode* gm) {
 		if (!hasPlacedAnchor) {  // NOT placed anchor
 			if (!takenAnchor) {
 				if (spoof)
-					spswap3(33);
-				spswap3(29);
+					spswap32(33);
+				spswap32(29);
 				if (!spoof)
-					getAnchor3();  // getpiston
+					getAnchor32();  // getpiston
 				takenAnchor = true;
 				return;
 			}
 			vec3_t enemyLoc = (targetList[0]->eyePos0).floor();
-			w = enemyLoc.add(2, 1, 0);
-			e = enemyLoc.add(-2, 1, 0);
-			s = enemyLoc.add(0, 1, 2);
-			n = enemyLoc.add(0, 1, -2);
+			w = enemyLoc.add(1, 0, 1);
+			e = enemyLoc.add(-1, 0, -1);
+			s = enemyLoc.add(1, 0, 1);
+			n = enemyLoc.add(1, 0, -1);
 			// restone2
 			/* X 360 X   315-45= s
 			 *  X X X     45-135 = e
@@ -259,10 +259,10 @@ void HoleKicker::onTick(C_GameMode* gm) {
 			// middle level  ~ last priority because it is the least effective
 			//
 			// piston
-			w1 = enemyLoc.add(1, 1, 0);
-			e1 = enemyLoc.add(-1, 1, 0);
-			s1 = enemyLoc.add(0, 1, 1);
-			n1 = enemyLoc.add(0, 1, -1);
+			w1 = enemyLoc.add(1, 0, 1);
+			e1 = enemyLoc.add(-1, 0, 1);
+			s1 = enemyLoc.add(1, 0, 1);
+			n1 = enemyLoc.add(1, 0, -1);
 			// crystal
 			cw = enemyLoc.add(1, 0, 0);
 			ce = enemyLoc.add(-1, 0, 0);
@@ -352,10 +352,10 @@ void HoleKicker::onTick(C_GameMode* gm) {
 	if (!hasDetonated) {
 		if (!takenRS) {  // redstone
 			if (spoof)
-				spswap3(143);
-			spswap3(152);
+				spswap32(143);
+			spswap32(152);
 			if (!spoof)
-				getGS3();  // getpiston
+				getGS32();  // getpiston
 			takenRS = true;
 			return;
 		}
@@ -463,7 +463,7 @@ void HoleKicker::onTick(C_GameMode* gm) {
 	}
 }
 
-void HoleKicker::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
+void AutoPush::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 	// DrawUtils::setColor(.5411765f, .1058824f, 1.f, 1.f); // 138,27,255
 	// DrawUtils::drawBox(currentBlock.toVec3t(), currentBlock.toVec3t().add(1), .4f, false);
 	//
@@ -550,7 +550,7 @@ void HoleKicker::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 	}
 }
 
-void HoleKicker::onDisable() {
+void AutoPush::onDisable() {
 	tickTimer = 0;
 	hasPlacedAnchor = false;
 	hasCharged = false;
@@ -572,5 +572,5 @@ void HoleKicker::onDisable() {
 	takentrap = false;
 	anti = false;
 }
-void HoleKicker::onLevelRender() {
+void AutoPush::onLevelRender() {
 }

@@ -292,6 +292,7 @@
     <ClCompile Include="Horion\Module\Modules\AutoCity.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoCrystal.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoObsidian.cpp" />
+    <ClCompile Include="Horion\Module\Modules\AutoPush.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoRespawn.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoSneak.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoSprint.cpp" />
@@ -531,6 +532,7 @@
     <ClInclude Include="Horion\Module\Modules\AutoCity.h" />
     <ClInclude Include="Horion\Module\Modules\AutoCrystal.h" />
     <ClInclude Include="Horion\Module\Modules\AutoObsidian.h" />
+    <ClInclude Include="Horion\Module\Modules\AutoPush.h" />
     <ClInclude Include="Horion\Module\Modules\AutoRespawn.h" />
     <ClInclude Include="Horion\Module\Modules\AutoSneak.h" />
     <ClInclude Include="Horion\Module\Modules\AutoSprint.h" />
