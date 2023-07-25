@@ -152,8 +152,7 @@ public:
 	int maxProximity = 4;    // 在切换轴之前，水晶与人之间的最大距离是多少
 	float range = 8;         // 要添加到目标列表的目标的范围人话就是目标范围
 	float placeRange = 6.f;  // 水晶最大的放置范围
-	SettingEnum priority;    // 决定如何对目标进行排序(距离->从最低到最高
-							 //)
+	SettingEnum priority;    // 决定如何对目标进行排序(距离->从最低到最高）
 	float thruWallsR = 6;    // 允许您放置多少水晶穿过墙壁
 	float postWallsR = 10;   // 穿墙后放置的最大距离
 
