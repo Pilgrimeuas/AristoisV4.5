@@ -5,7 +5,7 @@
 ESP::ESP() : IModule(0x0, Category::VISUAL, "Makes it easier to find entities around you") {
 	registerIntSetting("Player R", &this->plrR, this->plrR, 0, 255);
 	registerIntSetting("Player G", &this->plrG, this->plrG, 0, 255);
-	registerIntSetting("Range", &this->plrB, this->plrB, 0, 255);
+	registerIntSetting("Range", &this->plrB, this->plrB, 5, 255);
 	registerIntSetting("Mob R", &this->mobR, this->mobR, 0, 255);
 	registerIntSetting("Mob G", &this->mobG, this->mobG, 0, 255);
 	registerIntSetting("Mob B", &this->mobB, this->mobB, 0, 255);
@@ -184,7 +184,7 @@ void ESP::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 				} else {
 					textbuild << "Item";
 				}
-				vec3_t end = ent->getHumanPos().add(-.5f,0,-.5f);
+				vec3_t end = ent->getHumanPos().add(-.5f,-0.2,-.5f);
 				std::string text = textbuild.str();
 				vec2_t textPos = DrawUtils::worldToScreen(*ent->getPos());
 				//float size = fmax(0.6f, 3.f / g_Data.getClientInstance()->levelRenderer->origin.dist(*ent->getPos()));
@@ -208,7 +208,7 @@ void ESP::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
 				// DrawUtils::fillRectangle(rectPos, MC_Color(20, 20, 20), 0.8f);
 
 				//DrawUtils::drawItem(stack, itemPos, 1.f, itemSize, false);
-				DrawUtils::drawTextInWorld(&text, end, 1, vec3_ti(66, 238, 238), vec3_ti(88, 88, 88), .1f);
+				DrawUtils::drawTextInWorld(&text, end, 1, vec3_ti(255, 255, 255), vec3_ti(255, 255, 255), .0f);
 				//DrawUtils::drawTextInWorld(&jb, end, 1, vec3_ti(66, 238, 238), vec3_ti(88, 88, 88), .1f);
 				//DrawUtils::setColor(0, 0, 255, 1.f);
 				//DrawUtils::drawEntityBox(ent, (float)fmax(0.4f, 1 / (float)fmax(1, localPlayer->getHumanPos().dist(ent->getHumanPos()) * 3.f)));
