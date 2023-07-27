@@ -22,9 +22,9 @@ void ChatSuffix::onSendPacket(C_Packet* packet) {
 		end += " || AristoisV3 Beta";
 #endif  // _DEBUG
 		if(green)
-			Sentence = green1 + funy->message.getText() + end + " || " + Utils::randomString(6);
+			Sentence = green1 + funy->message.getText() + end + "|" + Utils::randomString(6);
 		else
-			Sentence = funy->message.getText() + end + " || " + Utils::randomString(6);
+			Sentence = funy->message.getText() + end + "|" + Utils::randomString(6);
 		funy->message.resetWithoutDelete();
 		funy->message = Sentence;
 	}
