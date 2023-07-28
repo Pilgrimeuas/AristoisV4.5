@@ -1,15 +1,21 @@
 #pragma once
 #include "Module.h"
+#include "../ModuleManager.h"
+
 class Step : public IModule {
 private:
-	float height = 2.f;
+	float height = 1.5f;
 
 public:
-	Step();
-	~Step();
+	bool reverse = false;
 
-	// Inherited via IModule
-	virtual const char* getModuleName() override;
-	virtual void onTick(C_GameMode* gm) override;
-	virtual void onDisable() override;
+	std::string name = "Step";
+	SettingEnum mode = this;
+
+	virtual void onMove(C_MoveInputHandler* input);
+	virtual const char* getRawModuleName();
+	virtual const char* getModuleName();
+	virtual void onTick(C_GameMode* gm);
+	virtual void onDisable();
+	Step();
 };

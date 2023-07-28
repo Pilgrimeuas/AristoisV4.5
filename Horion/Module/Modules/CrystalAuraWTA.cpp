@@ -1,13 +1,16 @@
 #include "CrystalAuraWTA.h"
 
-CrystalAuraWTA::CrystalAuraWTA() : IModule(0x0, Category::CPVP, "CrystalAura Developed by WellThatsAwkward") {
+CrystalAuraWTA::CrystalAuraWTA() : IModule(0x0, Category::CPVP, "CrystalAuraWTA+ For tk/mcpe or Nukkit Server") {
 	registerIntSetting("range", &range, range, 1, 10);
 	registerBoolSetting("autoplace", &autoplace, autoplace);
-	registerBoolSetting("AutoSwitch", &crystalCheck, crystalCheck);
-	//registerBoolSetting("LockY", &yLock, yLock);
+	// registerBoolSetting("onlyCrystal", &crystalCheck, crystalCheck);
+	// registerBoolSetting("LockY", &yLock, yLock);
 	registerIntSetting("delay", &delay, delay, 0, 20);
 	registerBoolSetting("onClick", &isClick, isClick);
-	registerBoolSetting("Multi", &doMultiple, doMultiple);
+	//	registerBoolSetting("Multi", &doMultiple, doMultiple);
+	registerBoolSetting("Silent", &silent, silent);
+	registerBoolSetting("Render", &renderCA, renderCA);
+	registerBoolSetting("Old render", &oldrdca, &oldrdca);
 }
 int crystalDelay = 0;
 int crystalDelay2 = 0;
@@ -17,9 +20,16 @@ CrystalAuraWTA::~CrystalAuraWTA() {
 }
 
 const char* CrystalAuraWTA::getModuleName() {
-	return ("CrystalAuraWTA");
+	return ("CrystalAuraWTA+");
 }
 static std::vector<C_Entity*> targetList7;
+
+struct CompareTargetEnArray {
+	bool operator()(C_Entity* lhs, C_Entity* rhs) {
+		C_LocalPlayer* localPlayer = g_Data.getLocalPlayer();
+		return (*lhs->getPos()).dist(*localPlayer->getPos()) < (*rhs->getPos()).dist(*localPlayer->getPos());
+	}
+};
 
 void findEntity3(C_Entity* currentEntity, bool isRegularEntity) {
 	static auto CrystalAuraWTAMod = moduleMgr->getModule<CrystalAuraWTA>();
@@ -33,8 +43,8 @@ void findEntity3(C_Entity* currentEntity, bool isRegularEntity) {
 	if (currentEntity == g_Data.getLocalPlayer())  // Skip Local player
 		return;
 
-	//if (!g_Data.getLocalPlayer()->canAttack(currentEntity, false))
-	//return;
+	// if (!g_Data.getLocalPlayer()->canAttack(currentEntity, false))
+	// return;
 
 	if (!g_Data.getLocalPlayer()->isAlive())
 		return;
@@ -42,7 +52,7 @@ void findEntity3(C_Entity* currentEntity, bool isRegularEntity) {
 	if (!currentEntity->isAlive())
 		return;
 
-	if (currentEntity->getNameTag()->getTextLength() <= 1 && currentEntity->getEntityTypeId() == 63)
+	if (currentEntity->getNameTag()->getTextLength() <= 1 && currentEntity->getEntityTypeId() == 319)
 		return;
 	if (currentEntity->width <= 0.01f || currentEntity->height <= 0.01f)  // Don't hit this pesky antibot on 2b2e.org
 		return;
@@ -56,12 +66,13 @@ void findEntity3(C_Entity* currentEntity, bool isRegularEntity) {
 	if (!Target::isValidTarget(currentEntity))
 		return;
 
-	//how hard is it to play fair? add back the badman check if its hard
+	// how hard is it to play fair? add back the badman check if its hard
 
 	float dist = (*currentEntity->getPos()).dist(*g_Data.getLocalPlayer()->getPos());
 
 	if (dist < CrystalAuraWTAMod->range) {
 		targetList7.push_back(currentEntity);
+		sort(targetList7.begin(), targetList7.end(), CompareTargetEnArray());
 	}
 }
 
@@ -77,9 +88,9 @@ bool checkTargCollision(vec3_t* block, C_Entity* ent) {
 	if (!corners.empty())
 		for (auto corner : corners) {
 			//	DrawUtils::drawText(DrawUtils::worldToScreen(*corners[n]), &std::to_string(n + 1), MC_Color(1.f, 1.f, 1.f));
-			//DrawUtils::setColor(1.f, 0.f, 0.f, 1.f);
-			//if (g_Data.getLocalPlayer()->region->getBlock(vec3_ti(corners[n]->x, corners[n]->y - 0.5f, corners[n]->z))->toLegacy()->blockId != 0) {
-			//DrawUtils::drawBox(vec3_t(floor(corners[n]->x), floor(corners[n]->y - 0.5f), floor(corners[n]->z)), g_Data.getLocalPlayer()->region->getBlock(vec3_ti(corners[n]->x, corners[n]->y - 0.5f, corners[n]->z))->toLegacy()->aabb.upper, 2.f);
+			// DrawUtils::setColor(1.f, 0.f, 0.f, 1.f);
+			// if (g_Data.getLocalPlayer()->region->getBlock(vec3_ti(corners[n]->x, corners[n]->y - 0.5f, corners[n]->z))->toLegacy()->blockId != 0) {
+			// DrawUtils::drawBox(vec3_t(floor(corners[n]->x), floor(corners[n]->y - 0.5f), floor(corners[n]->z)), g_Data.getLocalPlayer()->region->getBlock(vec3_ti(corners[n]->x, corners[n]->y - 0.5f, corners[n]->z))->toLegacy()->aabb.upper, 2.f);
 			//	DrawUtils::drawBox(vec3_t(floor(corners[n]->x), floor(corners[n]->y - 0.5f), floor(corners[n]->z)), vec3_t(floor(corners[n]->x) + 1.f, floor(corners[n]->y - 0.5f) + 1.f, floor(corners[n]->z) + 1.f), 2.f);
 			n++;
 
@@ -93,19 +104,7 @@ bool checkTargCollision(vec3_t* block, C_Entity* ent) {
 
 	return false;
 }
-void getCr6() {  // get Piston 29
-	auto supplies = g_Data.getLocalPlayer()->getSupplies();
-	auto inv = supplies->inventory;  // g_Data.getLocalPlayer()->getSupplies()->inventory->getItemStack(g_Data.getLocalPlayer()->getSupplies())->getItem()->itemID
-	for (int n = 0; n < 9; n++) {
-		C_ItemStack* stack = inv->getItemStack(n);
-		if (stack->item != nullptr) {
-			if (stack->getItem()->itemId == 637) {  // select anchor
-				supplies->selectedHotbarSlot = n;
-				return;
-			}
-		}
-	}
-}
+
 bool checkSurrounded2(C_Entity* ent) {
 	vec3_t entPos = ent->getPos()->floor();
 	entPos.y -= 1;
@@ -149,23 +148,23 @@ std::vector<vec3_t*> getGucciPlacement2(C_Entity* ent) {
 		auto blkIDLLL = g_Data.getLocalPlayer()->region->getBlock(vec3_ti(blocks->x, blocks->y - 3, blocks->z))->toLegacy()->blockId;
 		auto blkIDLLLL = g_Data.getLocalPlayer()->region->getBlock(vec3_ti(blocks->x, blocks->y - 4, blocks->z))->toLegacy()->blockId;
 
-		if (!checkTargCollision(&blocks->toVec3t(), ent)) {  //very efficient coding here
-
+		if (!checkTargCollision(&blocks->toVec3t(), ent)) {  // very efficient coding here
+			/*
 			if (blkID == 0 && blkIDL == 0 && (blkIDLL == 49 || blkIDLL == 7)) {
 				finalBlocks.push_back(new vec3_t(blocks->x, blocks->y - 1, blocks->z));
 			} else if (blkID == 0 && (blkIDL == 7 || blkIDL == 49)) {
 				finalBlocks.push_back(new vec3_t(blocks->x, blocks->y, blocks->z));
 			}
-
-			/*if (blkID == 0 && blkIDL == 0 && (blkIDLL == 49 || blkIDLL == 7)) {
+			*/
+			if (blkID == 0 && blkIDL == 0 && (blkIDLL == 49 || blkIDLL == 7)) {
 				finalBlocks.push_back(new vec3_t(blocks->x, blocks->y - 1, blocks->z));
 			} else if (blkID == 0 && (blkIDL == 7 || blkIDL == 49)) {
 				finalBlocks.push_back(new vec3_t(blocks->x, blocks->y, blocks->z));
 			} else if (blkID == 0 && blkIDL == 0 && blkIDLL == 0 && (blkIDLLL == 7 || blkIDLLL == 49)) {
 				finalBlocks.push_back(new vec3_t(blocks->x, blocks->y - 2, blocks->z));
-			} else if (blkID == 0 && blkIDL == 0 && blkIDLL == 0 && & blkIDLLL == 0 && (blkIDLLLL == 7 || blkIDLLLL == 49)) {
+			} else if (blkID == 0 && blkIDL == 0 && blkIDLL == 0 && &blkIDLLL == 0 && (blkIDLLLL == 7 || blkIDLLLL == 49)) {
 				finalBlocks.push_back(new vec3_t(blocks->x, blocks->y - 3, blocks->z));
-			}*/
+			}
 		} else {
 			for (int x = entPos.x - 2; x <= entPos.x + 2; x++) {
 				for (int z = entPos.z - 2; z <= entPos.z + 2; z++) {
@@ -185,17 +184,6 @@ std::vector<vec3_t*> getGucciPlacement2(C_Entity* ent) {
 
 bool hasPlaced = false;
 void CrystalAuraWTA::onEnable() {
-	auto supplies = g_Data.getLocalPlayer()->getSupplies();
-	auto inv = supplies->inventory;  // g_Data.getLocalPlayer()->getSupplies()->inventory->getItemStack(g_Data.getLocalPlayer()->getSupplies())->getItem()->itemID
-	for (int n = 0; n < 9; n++) {
-		C_ItemStack* stack = inv->getItemStack(n);
-		if (stack->item != nullptr) {
-			if (stack->getItem()->itemId == 637) {  // select anchor
-				supplies->selectedHotbarSlot = n;
-				return;
-			}
-		}
-	}
 	crystalDelay = 0;
 	hasPlaced = false;
 }
@@ -203,100 +191,124 @@ vec3_t espPosLower;
 vec3_t espPosUpper;
 vec3_t crystalPos;
 std::vector<vec3_t*> placeArr;
-std::vector<vec3_t*> hitArr;
-void CrystalAuraWTA::onTick(C_GameMode* gm) {
-	if (g_Data.getLocalPlayer() == nullptr) return;
-	if (isClick && !g_Data.isRightClickDown()) return;
+// std::vector<vec3_t*> hitArr;
 
-	if (g_Data.getLocalPlayer()->getSelectedItemId() == 259) return;
-
-	targetList7.clear();
-
-	g_Data.forEachEntity(findEntity3);
-	hitArr.clear();
-	placeArr.clear();
-	if (crystalCheck)
-		getCr6();
-	if (autoplace)
-		if ((crystalDelay >= this->delay) && !(targetList7.empty())) {
-			crystalDelay = 0;
-			if (!checkSurrounded2(targetList7[0])) {
-				std::vector<vec3_t*> gucciPositions = getGucciPlacement2(targetList7[0]);
-			
-				auto supplies = g_Data.getLocalPlayer()->getSupplies();
-				auto inv = supplies->inventory;
-				C_ItemStack* item = supplies->inventory->getItemStack(0);
-
-				//615 = normal id for crystal || 616 = crystal id for nukkit servers
-				if (!gucciPositions.empty())
-					if (g_Data.getLocalPlayer()->getSelectedItemId() == 637 || g_Data.getLocalPlayer()->getSelectedItemId() == 637) {
-						placeArr.clear();
-						for (auto place : gucciPositions) {
-							if (hasPlaced && !doMultiple) break;
-							if (targetList7.empty()) return;
-							gm->buildBlock(&vec3_ti(place->x, place->y - 1, place->z), 2, false);
-							placeArr.push_back(new vec3_t(place->x, place->y - 1, place->z));
-							hasPlaced = true;
-						}
-					}
-
-				gucciPositions.clear();
-			}
-		} else if (!targetList7.empty()) {
-			crystalDelay++;
-		}
-
-	//if (crystalDelay2 >= 20) {
-	//		hasPlaced = false;
-	//}
-
-	g_Data.forEachEntity([](C_Entity* ent, bool b) {
-		if (targetList7.empty()) return;
-		int id = ent->getEntityTypeId();
-		int range = moduleMgr->getModule<CrystalAuraWTA>()->range;
-		if (id == 71 && g_Data.getLocalPlayer()->getPos()->dist(*ent->getPos()) <= range) {
-			g_Data.getCGameMode()->attack(ent);
-			hasPlaced = false;
-
-		}
-	});  //*/
-}
-
-void CrystalAuraWTA::onDisable() {
-	auto supplies = g_Data.getLocalPlayer()->getSupplies();
-	auto inv = supplies->inventory;  // g_Data.getLocalPlayer()->getSupplies()->inventory->getItemStack(g_Data.getLocalPlayer()->getSupplies())->getItem()->itemID
+void findCr() {
+	C_PlayerInventoryProxy* supplies = g_Data.getLocalPlayer()->getSupplies();
+	C_Inventory* inv = supplies->inventory;
 	for (int n = 0; n < 9; n++) {
 		C_ItemStack* stack = inv->getItemStack(n);
 		if (stack->item != nullptr) {
-			if (stack->getItem()->itemId == 259) {  // select anchor
+			if (stack->getItem()->itemId == 637) {  // select crystal
 				supplies->selectedHotbarSlot = n;
+				// return true;
 				return;
 			}
 		}
 	}
+	// return false;
+}
+void CrystalAuraWTA::onTick(C_GameMode* gm) {
+	{
+		if (g_Data.getLocalPlayer() == nullptr) return;
+		if (isClick && !g_Data.isRightClickDown()) return;
+
+		//	if (g_Data.getLocalPlayer()->getSelectedItemId() == 259) return;
+
+		targetList7.clear();
+
+		g_Data.forEachEntity(findEntity3);
+		// hitArr.clear();
+		// placeArr.clear();
+
+		if (autoplace)
+			if ((crystalDelay >= this->delay) && !(targetList7.empty())) {
+				crystalDelay = 0;
+				if (!checkSurrounded2(targetList7[0])) {
+					std::vector<vec3_t*> gucciPositions = getGucciPlacement2(targetList7[0]);
+
+					auto supplies = g_Data.getLocalPlayer()->getSupplies();
+					auto inv = supplies->inventory;
+					slotCA = supplies->selectedHotbarSlot;
+					C_ItemStack* item = supplies->inventory->getItemStack(0);
+
+					// 615 = normal id for crystal || 616 = crystal id for nukkit servers
+					if (!gucciPositions.empty()) {
+						if (silent) findCr();
+						if (g_Data.getLocalPlayer()->getSelectedItemId() == 637) {
+							placeArr.clear();
+							for (auto place : gucciPositions) {
+								//								if (hasPlaced && !doMultiple) break;
+								if (targetList7.empty()) return;
+								gm->buildBlock(&vec3_ti(place->x, place->y - 1, place->z), 2,false);
+								// gm->buildBlock(&vec3_ti(place->x, place->y, place->z), 2);
+								// gm->buildBlock(&vec3_ti(place->x, place->y + 1, place->z), 2);
+								placeArr.push_back(new vec3_t(place->x, place->y - 1, place->z));
+								hasPlaced = true;
+							}
+						}
+						if (silent) supplies->selectedHotbarSlot = slotCA;
+					}
+
+					gucciPositions.clear();
+				}
+			} else if (!targetList7.empty()) {
+				crystalDelay++;
+			}
+
+		// if (crystalDelay2 >= 20) {
+		//		hasPlaced = false;
+		// }
+
+		g_Data.forEachEntity([](C_Entity* ent, bool b) {
+			if (targetList7.empty()) return;
+			int id = ent->getEntityTypeId();
+			int range = moduleMgr->getModule<CrystalAuraWTA>()->range;
+			if (id == 71 && g_Data.getLocalPlayer()->getPos()->dist(*ent->getPos()) <= range) {
+				g_Data.getCGameMode()->attack(ent);
+				hasPlaced = false;
+
+				if (!moduleMgr->getModule<NoSwing>()->isEnabled())
+					g_Data.getLocalPlayer()->swingArm();
+			}
+		});  //*/
+	}
+}
+
+void CrystalAuraWTA::onDisable() {
 	crystalDelay = 0;
 	hasPlaced = false;
 }
 /*
-* 
-* //this right here is stuff i was working on but havent been bothered to finish*/
+ *
+ * //this right here is stuff i was working on but havent been bothered to finish*/
 
 //*/
-
 void CrystalAuraWTA::onPreRender(C_MinecraftUIRenderContext* renderCtx) {
-	C_LocalPlayer* localPlayer = g_Data.getLocalPlayer();
-	if (localPlayer != nullptr && GameData::canUseMoveKeys()) {
-		if (!placeArr.empty()) {
-			for (auto postt : placeArr) {
-				DrawUtils::setColor(.1f, .75f, 1.f, 1.f);
-				DrawUtils::drawBox(postt->floor(), vec3_t(floor(postt->x) + 1.f, floor(postt->y) + 1.f, floor(postt->z) + 1.f), 1.f, true);
+	if (renderCA) {
+		auto interfacrColor = ColorUtil::interfaceColor(1);
+		C_LocalPlayer* localPlayer = g_Data.getLocalPlayer();
+		if (localPlayer != nullptr && GameData::canUseMoveKeys()) {
+			if (!targetList7.empty()) {
+				if (!placeArr.empty()) {
+					for (auto postt : placeArr) {
+						// DrawUtils::drawwtf(*postt, 0.5f);
+						DrawUtils::setColor(interfacrColor.r, interfacrColor.g, interfacrColor.b, 1.f);
+						if (!oldrdca) {
+							DrawUtils::drawBox(postt->floor().add(0.f, 0.999f, 0.f), vec3_t(floor(postt->x) + 1.f, floor(postt->y) + 1.f, floor(postt->z) + 1.f), 0.5f, true);
+						} else {
+							DrawUtils::drawBox(postt->floor(), vec3_t(floor(postt->x) + 1.f, floor(postt->y) + 1.f, floor(postt->z) + 1.f), 0.5f, true);
+						}
+					}
+				}
 			}
+			/*
+			if (!hitArr.empty()) {
+				for (auto postt : hitArr) {
+					DrawUtils::setColor(interfacrColor.r, interfacrColor.g, interfacrColor.b, 1.f);
+					DrawUtils::drawBox(postt->floor(), vec3_t(floor(postt->x) + 1.f, floor(postt->y) + 1.f, floor(postt->z) + 1.f), 0.5f, true);
+				}
+			}  //*/
 		}
-		if (!hitArr.empty()) {
-			for (auto postt : hitArr) {
-				DrawUtils::setColor(.1f, .75f, 1.f, 1.f);
-				DrawUtils::drawBox(postt->floor(), vec3_t(floor(postt->x) + 1.f, floor(postt->y) + 1.f, floor(postt->z) + 1.f), 1.f, true);
-			}
-		}  //*/
 	}
 }

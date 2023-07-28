@@ -29,7 +29,7 @@
 #include "Modules/TargetHud.h"
 #include "Modules/AutoText.h"
 //#include "Modules/FuckCity.h"
-#include "Modules/InfoShow.h"
+//#include "Modules/InfoShow.h"
 #include "Modules/Switcher.h"
 #include "Modules/StrafeSpeed.h"
 #include "Modules/Burrow.h"
@@ -100,7 +100,7 @@
 #include "Modules/ExtendedBlockReach.h"
 //#include "Modules/InfiniteAura.h"
 #include "Modules/InstaBreak.h"
-#include "Modules/InventoryCleaner.h"
+#include "Modules/InvManager.h"
 #include "Modules/InventoryMove.h"
 #include "Modules/Jesus.h"
 #include "Modules/Jetpack.h"
@@ -160,6 +160,10 @@
 #include "Modules/RiptideFly.h"
 #include "Modules/BigTest.h"
 #include "Modules/Timer2.h"
+#include "Modules/2B2Espeed.h"
+#include "Modules/CrystalAuraGK.h"
+#include "Modules/Offhand.h"
+#include "Modules/AutoHotbar.h"
 
 #ifdef _DEBUG
 #include "Modules/PacketLogger.h"

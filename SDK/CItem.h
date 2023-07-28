@@ -245,6 +245,10 @@ public:
 		if (((std::string)name.getText()).find("sword") != std::string::npos) return true;
 		return false;
 	}
+	bool isAxe(void) {
+		if (((std::string)name.getText()).find("axe") != std::string::npos) return true;
+		return false;
+	}
 	bool isTrident(void) {
 		if (((std::string)name.getText()).find("trident") != std::string::npos) return true;
 		return false;
@@ -372,6 +376,7 @@ public:
 	bool isBoots() {
 		return ArmorSlot == 3;
 	}
+	constexpr __forceinline int getArmorSlot() const { return ArmorSlot; }
 };
 
 class ItemRegistry {

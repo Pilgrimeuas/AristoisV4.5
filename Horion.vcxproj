@@ -280,6 +280,7 @@
     <ClCompile Include="Horion\Menu\ClickGui.cpp" />
     <ClCompile Include="Horion\Menu\TabGui.cpp" />
     <ClCompile Include="Horion\Module\ModuleManager.cpp" />
+    <ClCompile Include="Horion\Module\Modules\2B2Espeed.cpp" />
     <ClCompile Include="Horion\Module\Modules\Aimbot.cpp" />
     <ClCompile Include="Horion\Module\Modules\AirSwim.cpp" />
     <ClCompile Include="Horion\Module\Modules\AnchorAura.cpp" />
@@ -291,6 +292,7 @@
     <ClCompile Include="Horion\Module\Modules\AutoArmor.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoCity.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoCrystal.cpp" />
+    <ClCompile Include="Horion\Module\Modules\AutoHotbar.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoObsidian.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoPush.cpp" />
     <ClCompile Include="Horion\Module\Modules\AutoRespawn.cpp" />
@@ -316,6 +318,7 @@
     <ClCompile Include="Horion\Module\Modules\Coordinates.cpp" />
     <ClCompile Include="Horion\Module\Modules\Criticals.cpp" />
     <ClCompile Include="Horion\Module\Modules\CrystalAurad.cpp" />
+    <ClCompile Include="Horion\Module\Modules\CrystalAuraGK.cpp" />
     <ClCompile Include="Horion\Module\Modules\CrystalAuraWTA.cpp" />
     <ClCompile Include="Horion\Module\Modules\CrystalBreak.cpp" />
     <ClCompile Include="Horion\Module\Modules\CrystalPlace.cpp" />
@@ -325,7 +328,7 @@
     <ClCompile Include="Horion\Module\Modules\ExamModule.cpp" />
     <ClCompile Include="Horion\Module\Modules\ExtendedBlockReach.cpp" />
     <ClCompile Include="Horion\Module\Modules\FastCrossbow.cpp" />
-    <ClCompile Include="Horion\Module\Modules\FastEast.cpp" />
+    <ClCompile Include="Horion\Module\Modules\FastEat.cpp" />
     <ClCompile Include="Horion\Module\Modules\Fly.cpp" />
     <ClCompile Include="Horion\Module\Modules\FollowPathModule.cpp" />
     <ClCompile Include="Horion\Module\Modules\FontChanger.cpp" />
@@ -342,7 +345,7 @@
     <ClCompile Include="Horion\Module\Modules\InfoShow.cpp" />
     <ClCompile Include="Horion\Module\Modules\InstaBreak.cpp" />
     <ClCompile Include="Horion\Module\Modules\Interface.cpp" />
-    <ClCompile Include="Horion\Module\Modules\InventoryCleaner.cpp" />
+    <ClCompile Include="Horion\Module\Modules\InvManager.cpp" />
     <ClCompile Include="Horion\Module\Modules\InventoryMove.cpp" />
     <ClCompile Include="Horion\Module\Modules\InvView.cpp" />
     <ClCompile Include="Horion\Module\Modules\JavascriptModule.cpp" />
@@ -370,6 +373,7 @@
     <ClCompile Include="Horion\Module\Modules\Notifications.cpp" />
     <ClCompile Include="Horion\Module\Modules\NoWeb.cpp" />
     <ClCompile Include="Horion\Module\Modules\Nuker.cpp" />
+    <ClCompile Include="Horion\Module\Modules\Offhand.cpp" />
     <ClCompile Include="Horion\Module\Modules\PacketLogger.cpp" />
     <ClCompile Include="Horion\Module\Modules\PacketMine.cpp" />
     <ClCompile Include="Horion\Module\Modules\Phase.cpp" />
@@ -519,6 +523,7 @@
     <ClInclude Include="Horion\Menu\ClickGui.h" />
     <ClInclude Include="Horion\Menu\TabGui.h" />
     <ClInclude Include="Horion\Module\ModuleManager.h" />
+    <ClInclude Include="Horion\Module\Modules\2B2Espeed.h" />
     <ClInclude Include="Horion\Module\Modules\Aimbot.h" />
     <ClInclude Include="Horion\Module\Modules\AirSwim.h" />
     <ClInclude Include="Horion\Module\Modules\AnchorAura.h" />
@@ -531,6 +536,7 @@
     <ClInclude Include="Horion\Module\Modules\AutoArmor.h" />
     <ClInclude Include="Horion\Module\Modules\AutoCity.h" />
     <ClInclude Include="Horion\Module\Modules\AutoCrystal.h" />
+    <ClInclude Include="Horion\Module\Modules\AutoHotbar.h" />
     <ClInclude Include="Horion\Module\Modules\AutoObsidian.h" />
     <ClInclude Include="Horion\Module\Modules\AutoPush.h" />
     <ClInclude Include="Horion\Module\Modules\AutoRespawn.h" />
@@ -556,6 +562,7 @@
     <ClInclude Include="Horion\Module\Modules\Coordinates.h" />
     <ClInclude Include="Horion\Module\Modules\Criticals.h" />
     <ClInclude Include="Horion\Module\Modules\Crystalaurad.h" />
+    <ClInclude Include="Horion\Module\Modules\CrystalAuraGK.h" />
     <ClInclude Include="Horion\Module\Modules\CrystalAuraWTA.h" />
     <ClInclude Include="Horion\Module\Modules\CrystalUtilsJTWD.h" />
     <ClInclude Include="Horion\Module\Modules\Derp.h" />
@@ -583,7 +590,7 @@
     <ClInclude Include="Horion\Module\Modules\InfoShow.h" />
     <ClInclude Include="Horion\Module\Modules\InstaBreak.h" />
     <ClInclude Include="Horion\Module\Modules\Interface.h" />
-    <ClInclude Include="Horion\Module\Modules\InventoryCleaner.h" />
+    <ClInclude Include="Horion\Module\Modules\InvManager.h" />
     <ClInclude Include="Horion\Module\Modules\InventoryMove.h" />
     <ClInclude Include="Horion\Module\Modules\InvView.h" />
     <ClInclude Include="Horion\Module\Modules\JavascriptModule.h" />
@@ -609,6 +616,7 @@
     <ClInclude Include="Horion\Module\Modules\Notifications.h" />
     <ClInclude Include="Horion\Module\Modules\NoWeb.h" />
     <ClInclude Include="Horion\Module\Modules\Nuker.h" />
+    <ClInclude Include="Horion\Module\Modules\Offhand.h" />
     <ClInclude Include="Horion\Module\Modules\PacketLogger.h" />
     <ClInclude Include="Horion\Module\Modules\PacketMine.h" />
     <ClInclude Include="Horion\Module\Modules\Phase.h" />

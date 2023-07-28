@@ -4,7 +4,7 @@
 #include "../../../Utils/Target.h"
 #include "../ModuleManager.h"
 
-CrystalAuraOW::CrystalAuraOW() : IModule(0x0, Category::COMBAT, "Crystal Aura by OldGreggo5081 & weedelbhoy1") {
+CrystalAuraOW::CrystalAuraOW() : IModule(0x0, Category::CPVP, "Crystal Aura by OldGreggo5081 & weedelbhoy1") {
 	this->registerIntSetting("range", &this->range, this->range, 3, 17);
 
 	registerBoolSetting("onClick", &this->onClick, this->onClick);

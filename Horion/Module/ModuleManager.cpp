@@ -36,7 +36,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new SilentLook()));
 		//moduleList.push_back(std::shared_ptr<IModule>(new RenSurround()));
 		moduleList.push_back(std::shared_ptr<IModule>(new TargetHud()));
-		moduleList.push_back(std::shared_ptr<IModule>(new Bps()));  // btw this module is InfoShow ~ i was just too lazy to rename
+		//moduleList.push_back(std::shared_ptr<IModule>(new Bps()));  // btw this module is InfoShow ~ i was just too lazy to rename
 		moduleList.push_back(std::shared_ptr<IModule>(new Strafe()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Burrow()));
 		moduleList.push_back(std::shared_ptr<IModule>(new pvpResources()));
@@ -100,7 +100,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new Nuker()));
 		moduleList.push_back(std::shared_ptr<IModule>(new InstaBreak()));
 		moduleList.push_back(std::shared_ptr<IModule>(new NoPacket()));
-		moduleList.push_back(std::shared_ptr<IModule>(new The2b2eSpeed()));
+		//moduleList.push_back(std::shared_ptr<IModule>(new The2b2eSpeed()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Xray()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Fucker()));
 		moduleList.push_back(std::shared_ptr<IModule>(new NoSlowDown()));
@@ -129,7 +129,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new NoFriends()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Spammer()));
 		moduleList.push_back(std::shared_ptr<IModule>(new AntiBot()));
-		moduleList.push_back(std::shared_ptr<IModule>(new InventoryCleaner()));
+		moduleList.push_back(std::shared_ptr<IModule>(new InvManager()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Derp()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Placer()));
 		//moduleList.push_back(std::shared_ptr<IModule>(new //CrystalAura()));
@@ -163,7 +163,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new CevBreaker()));
 		moduleList.push_back(std::shared_ptr<IModule>(new InventoryView()));
 		moduleList.push_back(std::shared_ptr<IModule>(new AutoRespawn()));
-		moduleList.push_back(std::shared_ptr<IModule>(new PlayerList()));
+		moduleList.push_back(std::shared_ptr<IModule>(new PlayerListx()));
 		moduleList.push_back(std::shared_ptr<IModule>(new BedAura()));
 		//moduleList.push_back(std::shared_ptr<IModule>(new FastCrossbow()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Welcome())); 
@@ -172,6 +172,13 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new RiptideFly()));
 		moduleList.push_back(std::shared_ptr<IModule>(new BigTest()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Timer2()));
+		moduleList.push_back(std::shared_ptr<IModule>(new _2b2espeed_()));
+		moduleList.push_back(std::shared_ptr<IModule>(new CrystalAuraGK()));
+		moduleList.push_back(std::shared_ptr<IModule>(new Offhand()));
+		moduleList.push_back(std::shared_ptr<IModule>(new AutoHotbar()));
+		
+
+
 		
 
 #ifdef _DEBUG

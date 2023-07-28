@@ -1,21 +1,19 @@
 #pragma once
-#include "..\ModuleManager.h"
 #include "Module.h"
 
-class Bhop : public IModule {
+class _2b2espeed_ : public IModule {
 private:
 	float speed = 0.325f;
-	float up = 0.10f;
-	bool lowhop = true;
-	bool step = true;
-	bool v2 = false;
+	bool ssp = false;
+	float sneakspeed = 1.f;
+	float speedreal = 0.5f;
 
 public:
-	Bhop();
-	~Bhop();
+	_2b2espeed_();
+	~_2b2espeed_();
 
 	// Inherited via IModule
+	virtual void onTick(C_GameMode* gm) override;
 	virtual const char* getModuleName() override;
 	virtual void onMove(C_MoveInputHandler* input) override;
-	virtual void onDisable() override;
 };

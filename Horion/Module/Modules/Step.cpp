@@ -1,20 +1,49 @@
 #include "Step.h"
 
+using namespace std;
 Step::Step() : IModule(0, Category::MOVEMENT, "Increases your step height") {
-	registerFloatSetting("height", &height, height, 1.f, 10.f);
+	registerEnumSetting("Mode", &mode, 0);
+	mode.addEntry(EnumEntry("Vanilla", 0));
+	mode.addEntry(EnumEntry("None", 1));
+	registerBoolSetting("Reverse", &reverse, reverse);
+	registerFloatSetting("Height", &height, height, 1.f, 2.f);
 }
 
-Step::~Step() {
+const char* Step::getRawModuleName() {
+	return "Step";
 }
 
 const char* Step::getModuleName() {
-	return ("Step");
+	if (mode.getSelectedValue() == 0) name = string("Step ") + string(GRAY) + string("[") + string(WHITE) + to_string((int)height) + string(".") + to_string((int)(height * 10) - ((int)height * 10)) + string(GRAY) + string("]");
+	if (mode.getSelectedValue() == 1) {
+		if (reverse)
+			name = string("Step ") + string(GRAY) + string("[") + string(WHITE) + string("Reverse") + string(GRAY) + string("]");
+		else
+			return "Step";
+	}
+	return name.c_str();
 }
 
 void Step::onTick(C_GameMode* gm) {
-	gm->player->stepHeight = height;
-}
-void Step::onDisable() {
-	if (g_Data.getLocalPlayer() != nullptr)
+	auto player = g_Data.getLocalPlayer();
+	if (player == nullptr) return;
+
+	if (mode.getSelectedValue() == 0)
+		player->stepHeight = height;  // nORmal
+	else
 		g_Data.getLocalPlayer()->stepHeight = 0.5625f;
+
+	//if (reverse && player->onGround && !player->isInWater() && !player->isInLava() && !moduleMgr->getModule<Jesus>()->wasInWater)
+		//player->velocity.y = -1.f;
+}
+
+void Step::onMove(C_MoveInputHandler* input) {
+}
+
+void Step::onDisable() {
+	g_Data.getClientInstance()->minecraft->setTimerSpeed(20.f);
+	auto player = g_Data.getLocalPlayer();
+	if (player == nullptr) return;
+
+	player->stepHeight = 0.5625f;
 }
