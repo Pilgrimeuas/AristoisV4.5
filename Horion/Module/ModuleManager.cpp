@@ -176,7 +176,7 @@ void ModuleManager::initModules() {
 		moduleList.push_back(std::shared_ptr<IModule>(new CrystalAuraGK()));
 		moduleList.push_back(std::shared_ptr<IModule>(new Offhand()));
 		moduleList.push_back(std::shared_ptr<IModule>(new AutoHotbar()));
-		
+		moduleList.push_back(std::shared_ptr<IModule>(new AutoLog()));
 
 
 		

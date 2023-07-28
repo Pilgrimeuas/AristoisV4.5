@@ -164,6 +164,7 @@
 #include "Modules/CrystalAuraGK.h"
 #include "Modules/Offhand.h"
 #include "Modules/AutoHotbar.h"
+#include "Modules/AutoLog.h"
 
 #ifdef _DEBUG
 #include "Modules/PacketLogger.h"
