@@ -10,10 +10,10 @@ private:
 	bool anvilhb = false;
 	bool crystalhb = false;
 	bool gapplehb = false;
-	int SwordSlot = 1;
-	int PickaxeSlot = 2;
+	//int SwordSlot = 1;
+	//int PickaxeSlot = 2;
 	int obsidianSlot = 3;
-	int anvilSlot = 4;
+	//int anvilSlot = 4;
 	int crystalSlot = 5;
 	int gappleSlot = 9;
 	bool dasword = false;
