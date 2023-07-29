@@ -13,8 +13,11 @@ Jesus::Jesus() : IModule(0, Category::MOVEMENT, "Allows you to walk on Liquids")
 const char* Jesus::getRawModuleName() {
 	return "Jesus";
 }
-
-void Jesus::onTick(C_GameMode* gameMode) {
+const char* Jesus::getModuleName() {
+	return name.c_str();
+	//±ğÉ¾µô
+   }
+	void Jesus::onTick(C_GameMode* gameMode) {
 	if (gameMode->player->isSneaking()) return;
 
 	if (gameMode->player->hasEnteredWater()) {

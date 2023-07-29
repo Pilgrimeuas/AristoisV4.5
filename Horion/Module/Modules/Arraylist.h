@@ -13,6 +13,8 @@ private:
 
 public:
 	float opacity = 0.65f;
+	float scale = 1.f;
+	bool bottom = false;
 	int arraycoloropa = 150;
 	int newopa = 150;
 	int whiteopacity = 0;

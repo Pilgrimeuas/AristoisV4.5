@@ -16,6 +16,8 @@ ArrayList::ArrayList() : IModule(0, Category::VISUAL, "Displays enabled modules"
 	animation.addEntry(EnumEntry("None", 2));
 	registerBoolSetting("Modes", &modes, modes);
 	registerBoolSetting("Keybinds", &keybinds, keybinds);
+	registerBoolSetting("Bottom", &bottom, bottom);
+	registerFloatSetting("Scale", &scale, scale, 0.5f, 1.5f);
 	registerIntSetting("Opacity", &newopa, newopa, 0, 255);
 	registerFloatSetting("ColorUtilsOpacity", &opacity, opacity, 0,1.f);
 	registerIntSetting("ColorOpacity", &arraycoloropa, arraycoloropa, 0, 255);
@@ -94,13 +96,24 @@ void ArrayList::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 		static constexpr bool rightSide = true;
 		//set<IModuleContainer> moduleList;
 		std::set<IModuleContainer> modContainerList;
-		windowSize.x = positionX;
-		windowSize.y = positionY;
-		float textSize = 1.f;
+		//windowSize.x = positionX;
+		//windowSize.y = positionY;
+		float arh = DrawUtils::getFont(Fonts::SMOOTH)->getLineHeight() * scale;
+		if (bottom) {
+			positionX = windowSize.x;
+			positionY = windowSize.y;
+		} else {
+			positionX = windowSize.x;
+			positionY = 0;
+		}
+		float textSize = scale;
 		float yOffset = positionY;
 		float textPadding = spacing * textSize;
 		float textHeight = 10.0f * textSize;
-
+		if (bottom)
+			invert = true;
+		else
+			invert = false;
 		if (yOffset > racoonaids.y / 2)
 			invert = true;
 		else

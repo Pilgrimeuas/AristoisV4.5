@@ -156,8 +156,6 @@ void Killaura::onTick(C_GameMode* gm) {
 	if (g_Data.getLocalPlayer()->getSelectedItemId() == 426 && g_Data.isRightClickDown())
 		return;
 	C_PlayerInventoryProxy* supplies = g_Data.getLocalPlayer()->getSupplies();
-	Odelay++;
-	slotKA = supplies->selectedHotbarSlot;
 	targetListEmpty = targetList.empty();
 	// Loop through all our players and retrieve their information
 	targetList.clear();
@@ -165,6 +163,8 @@ void Killaura::onTick(C_GameMode* gm) {
 		g_Data.getClientInstance()->minecraft->setTimerSpeed(timer);
 	}  // ±äËÙ³İÂÖ
 	g_Data.forEachEntity(findEntity);
+	Odelay++;
+	slotKA = supplies->selectedHotbarSlot;
 	if (strafe) {
 		localPlayer->setRot(angle);
 	}
@@ -200,6 +200,8 @@ void Killaura::onTick(C_GameMode* gm) {
 					gm->attack(targetList[0]);
 					gm->attack(targetList[0]);
 					gm->attack(targetList[0]);
+					gm->attack(targetList[0]);
+					gm->attack(targetList[0]);
 					if (swingKA) {
 						player->swing();
 					}
@@ -209,6 +211,7 @@ void Killaura::onTick(C_GameMode* gm) {
 		if (isMulitAura) {
 			for (auto& i2 : targetList) {
 				if (!(i2->damageTime > 1 && hurttime)) {
+					gm->attack(i2);
 					gm->attack(i2);
 					gm->attack(i2);
 					gm->attack(i2);

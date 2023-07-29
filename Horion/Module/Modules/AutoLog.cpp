@@ -14,7 +14,9 @@ AutoLog::AutoLog() : IModule(0, Category::PLAYER, "Spams so many packets server 
 }
 AutoLog::~AutoLog() {
 }
-
+const char* AutoLog::getModuleName() {
+	return name.c_str();
+}
 const char* AutoLog::getRawModuleName() {
 	return ("AutoLog");
 }
