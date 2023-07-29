@@ -18,7 +18,6 @@ public:
 
 	virtual void onMove(C_MoveInputHandler* input);
 	virtual const char* getRawModuleName();
-	virtual const char* getModuleName();
 	virtual void onTick(C_GameMode* gm);
 	virtual void onDisable();
 	Jesus();

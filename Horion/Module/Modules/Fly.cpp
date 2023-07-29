@@ -4,7 +4,7 @@ Fly::Fly() : IModule(0x0, Category::MOVEMENT, "Become superman.") {
 	registerFloatSetting("Horizontal Speed", &this->speed, this->speed, 0.1f, 2.f);
 	registerFloatSetting("Vertical Speed", &this->upanddown, this->upanddown, 0.1f, 2.f);
 	this->registerBoolSetting("Super Speed", &this->superMan, this->superMan);
-	registerFloatSetting("value", &glideMod, glideMod, -0.005, -0.001);
+	registerFloatSetting("value", &glideMod, glideMod, -0.15, 0.00);
 }
 
 Fly::~Fly() {

@@ -14,12 +14,6 @@ const char* Jesus::getRawModuleName() {
 	return "Jesus";
 }
 
-const char* Jesus::getModuleName() {
-	if (mode.getSelectedValue() == 0) name = string("Jesus ") + string(GRAY) + string("[") + string(WHITE) + string("Solid") + string(GRAY) + string("]");
-	if (mode.getSelectedValue() == 1) name = string("Jesus ") + string(GRAY) + string("[") + string(WHITE) + string("Bounce") + string(GRAY) + string("]");
-	return name.c_str();
-}
-
 void Jesus::onTick(C_GameMode* gameMode) {
 	if (gameMode->player->isSneaking()) return;
 

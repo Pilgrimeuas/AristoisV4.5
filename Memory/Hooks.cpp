@@ -1903,9 +1903,9 @@ void Hooks::Actor__setRot(C_Entity* _this, vec2_t& angle) {
 
 		func(_this, angle = jtwdCAMod->rotAngle);
 	}
-	if (killauraMod->isEnabled() && !killauraMod->targetListEmpty && killauraMod->rotations && _this == g_Data.getLocalPlayer()) {
-		func(_this, angle = killauraMod->angle);
-	}
+	//if (killauraMod->isEnabled() && !killauraMod->targetListEmpty && killauraMod->rotations && _this == g_Data.getLocalPlayer()) {
+		//func(_this, angle = killauraMod->angle);
+	//}
 	if (RipMod->isEnabled() && !RipMod->Remp && RipMod->rotation && _this == g_Data.getLocalPlayer()) {
 		func(_this, angle = RipMod->angle);
 	}

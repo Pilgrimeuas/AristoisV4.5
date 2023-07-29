@@ -14,6 +14,5 @@ public:
 	std::string name = "AutoLog";
 	inline std::string& getCustomMessage() { return custommessage; };
 	virtual const char* getRawModuleName() override;
-	virtual const char* getModuleName() override;
 	virtual void onTick(C_GameMode* gm) override;
 };

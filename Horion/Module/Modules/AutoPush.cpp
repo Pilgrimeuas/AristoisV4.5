@@ -22,7 +22,7 @@ AutoPush::AutoPush() : IModule(VK_NUMPAD0, Category::CPVP, "LOL AutoPush") {
 AutoPush::~AutoPush() {
 }
 const char* AutoPush::getModuleName() {
-	return ("buttonPush");
+	return ("AutoPush");
 }
 
 static std::vector<C_Entity*> targetList;

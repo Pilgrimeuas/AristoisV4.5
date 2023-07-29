@@ -3,7 +3,7 @@
 NoClip::NoClip() : IModule(0x0, Category::MOVEMENT, "NoClip through walls on all axis") {
 	registerFloatSetting("Horizontal Speed", &this->speed, this->speed, 0.1f, 2.f);
 	registerFloatSetting("Vertical Speed", &this->upanddown, this->upanddown, 0.1f, 2.f);
-	registerFloatSetting("value", &glideMod, glideMod, 0, -0.15);
+	registerFloatSetting("value", &glideMod, glideMod, -0.15, 0.00);
 	//this->registerBoolSetting("Save Old POS", &this->NoPacket, this->NoPacket);
 }
 

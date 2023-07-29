@@ -19,13 +19,6 @@ const char* AutoLog::getRawModuleName() {
 	return ("AutoLog");
 }
 
-const char* AutoLog::getModuleName() {
-	if (CustomMsg == true) {
-		name = std::string("AutoLog ") + std::string(BLUE) + std::string("[") + std::string(RED) + std::string("CUSTOM") + std::string(BLUE) + std::string("]");
-	};
-	return name.c_str();
-}
-
 void AutoLog::onTick(C_GameMode* gm) {
 	int healthy = g_Data.getLocalPlayer()->getHealth();
 	if (healthy < health) {

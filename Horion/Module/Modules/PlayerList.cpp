@@ -1,6 +1,6 @@
-#include"PlayerList.h"
 #include "../../DrawUtils.h"
 #include "../ModuleManager.h"
+#include "PlayerList.h"
 
 PlayerListx::PlayerListx() : IModule(0x0, Category::VISUAL, "draws a list of nearby players next to the array list") {
 	registerBoolSetting("Show Armour", &this->armour, this->armour);
@@ -46,8 +46,7 @@ void PlayerListx::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 	if (player == nullptr) return;
 	vec2_t windowSize = g_Data.getClientInstance()->getGuiData()->windowSize;
 
-	//if ((g_Data.getLocalPlayer() != nullptr) && g_Data.canUseMoveKeys() && !clickGUI->hasOpenedGUI) 
-	{
+	if ((g_Data.getLocalPlayer() != nullptr) && g_Data.canUseMoveKeys()) {
 		int runs2 = 0;
 		playerListx.clear();
 		g_Data.forEachEntity(findPlayerscc);
@@ -62,7 +61,7 @@ void PlayerListx::onPostRender(C_MinecraftUIRenderContext* renderCtx) {
 				std::string* isThisSoBroken = &why;
 				//	log(*playerList[0]->getNameTag()->getText());
 				vec2_t testdx = vec2_t(windowSize.x - 122.5f, 30.f + (10.f * runs2));
-				DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(cfd), 1.f, 1.f);
+				DrawUtils::drawText(vec2_t(windowSize.x - 120.f, 30.f + (10.f * runs2)), isThisSoBroken, MC_Color(cfd), 1.f, 1.f, Fonts::SMOOTH);
 				if (ye->damageTime > 1) {
 					DrawUtils::drawRectangle(vec4_t(testdx.x - 7.5, testdx.y, testdx.x, testdx.y + 7.5), MC_Color(255, 0, 0), 1.f, 1.f);
 					DrawUtils::fillRectangleA(vec4_t(testdx.x - 7.5, testdx.y, testdx.x, testdx.y + 7.5), MC_Color(255, 0, 0, 150));
